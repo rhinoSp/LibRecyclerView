@@ -6,6 +6,7 @@ import com.rhino.rv.impl.IOnLongClickListener;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 
@@ -47,6 +48,11 @@ public abstract class BaseHolderData {
      */
     @LayoutRes
     public abstract int getLayoutRes();
+    /**
+     * Get the class name of ViewHolder.
+     */
+    @NonNull
+    public abstract String getHolderClassName();
 
     /**
      * Get the span size.

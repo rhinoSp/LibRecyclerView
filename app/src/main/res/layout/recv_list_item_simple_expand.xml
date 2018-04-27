@@ -1,50 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.rhino.rv.swipe.SwipeItemLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:tag="com.rhino.librecyclerview.data.SimpleExpandHolderData$SimpleExpandHolder"
-    app:sil_bottomMode="layDown"
-    app:sil_springDistance="3dp"
-    app:sil_swipeAlphaEnable="false"
-    app:sil_swipeDirection="left"
-    app:sil_swipeEnable="true">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
-
-    <RelativeLayout
+    <com.rhino.rv.swipe.SwipeItemLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="70dp"
+        app:sil_bottomMode="layDown"
+        app:sil_springDistance="3dp"
+        app:sil_swipeAlphaEnable="false"
+        app:sil_swipeDirection="left"
+        app:sil_swipeEnable="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/selector_nor_white_pre_black10"
-            android:paddingLeft="20dp">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="text"
-                android:textSize="20sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_nor_white_pre_black10"
+                android:paddingLeft="20dp">
 
-            <ImageView
-                android:id="@+id/arrow"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="20dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:src="@mipmap/ic_expand"/>
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="text"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/arrow"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="20dp"
+                    android:src="@mipmap/ic_expand" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
-
-</com.rhino.rv.swipe.SwipeItemLayout>
+    </com.rhino.rv.swipe.SwipeItemLayout>
+</layout>

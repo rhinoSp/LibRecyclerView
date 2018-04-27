@@ -1,6 +1,7 @@
 package com.rhino.rv.base;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -33,8 +34,9 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     }
 
     @Override
-    public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        BaseHolder holder = mHolderFactory.buildHolder(parent, viewType);
+    public BaseHolder onCreateViewHolder(ViewGroup parent, int position) {
+        BaseHolder holder = mHolderFactory.buildHolder(parent, mDataList.get(position).getLayoutRes(),
+                mDataList.get(position).getHolderClassName());
         holder.setAdapter(this);
         holder.setParentView(parent);
         return holder;
@@ -42,7 +44,7 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return mDataList.get(position).getLayoutRes();
+        return position;
     }
 
     @SuppressWarnings("unchecked")

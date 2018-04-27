@@ -7,23 +7,31 @@ import android.view.ViewGroup;
 import com.rhino.rv.base.BaseHolder;
 import com.rhino.rv.base.BaseHolderFactory;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * Created by LuoLin on 2016/11/21.
  **/
 public class SimpleHolderFactory extends BaseHolderFactory {
     @SuppressWarnings("all")
     @Override
-    public BaseHolder buildHolder(ViewGroup parent, int viewLayout) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(viewLayout, parent, false);
-        String className = (String) view.getTag();
+    public BaseHolder buildHolder(ViewGroup parent, int layoutResId, String holderClassName) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false);
+        BaseHolder holder = null;
         try {
-            Class clazz = Class.forName(className);
-            BaseHolder holder = (BaseHolder) clazz.getConstructor(View.class).newInstance(view);
-            return holder;
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Notice: You need to set the tag in the root view " +
-                    "of the layout file, the tag string is full name of binded Holder class " +
-                    "and will be used to reflect the object.\n" + e.toString());
+            Class clazz = Class.forName(holderClassName);
+            holder = (BaseHolder) clazz.getConstructor(View.class).newInstance(view);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
         }
+        return holder;
     }
 }
