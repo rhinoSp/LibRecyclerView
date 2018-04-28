@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SimpleExpandActivity"/>
+        <activity android:name=".PullRefreshActivity"/>
+        <activity android:name=".SwipeDeleteActivity"/>
+        <activity android:name=".ViewPagerActivity"/>
+        <activity android:name=".MixItemActivity"/>
+
     </application>
 
 </manifest>
