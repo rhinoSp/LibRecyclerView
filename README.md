@@ -1,6 +1,26 @@
 # LibRecyclerView
 The library of RecyclerView.
 
+# How to
+To get a Git project into your build:
+
+**Step 1**. Add the JitPack repository to your build file<br>
+Add it in your root build.gradle at the end of repositories:<br>
+```Java
+allprojects {
+    repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+**Step 2**. Add the dependency<br>
+```Java
+dependencies {
+    implementation 'com.github.rhinoSp:LibRecyclerView:v1.0.2'
+}
+```
+
 # Question / Contact Me / Hire Me
 
 Please feel free to ping me at rhino_luo@163.com.
