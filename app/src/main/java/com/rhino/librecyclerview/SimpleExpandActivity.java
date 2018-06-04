@@ -39,7 +39,7 @@ public class SimpleExpandActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.simple_expand_activity);
         initView();
     }
 
@@ -60,6 +60,7 @@ public class SimpleExpandActivity extends AppCompatActivity {
         mPullRecyclerView.addItemDecoration(new SimpleItemDecoration(getApplicationContext()));
 
         refreshList();
+
     }
 
     private void refreshList() {
@@ -99,6 +100,14 @@ public class SimpleExpandActivity extends AppCompatActivity {
         mSwipeListAdapter.notifyDataSetChanged();
     }
 
+    public void expandAll(View v) {
+        mSwipeListAdapter.expandAll(false);
+    }
+
+    public void collapseAll(View v) {
+        mSwipeListAdapter.collapseAll(false);
+    }
+
     private IOnClickListener<SimpleExpandHolderData> mItemClickListener = null;
     private IOnClickListener<SimpleExpandHolderData> buildItemClickListener() {
         if (null == mItemClickListener) {
@@ -108,7 +117,11 @@ public class SimpleExpandActivity extends AppCompatActivity {
                     if (data.isLeaf()) {
                         showToast(data.mDesc);
                     } else {
-                        data.doExpand(!data.isExpand());
+                        if (data.isExpanded()) {
+                            data.collapse(false);
+                        } else {
+                            data.expand(false);
+                        }
                     }
                 }
             };

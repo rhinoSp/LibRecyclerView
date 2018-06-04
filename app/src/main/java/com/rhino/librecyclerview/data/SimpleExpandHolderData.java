@@ -62,17 +62,6 @@ public class SimpleExpandHolderData extends BaseSwipeHolderData {
         public void bindView(SimpleExpandHolderData data, int position) {
             mTvDesc.setText(data.mDesc);
 
-            if(data.isLeaf()){
-                mIvArrow.setVisibility(View.GONE);
-            } else {
-                mIvArrow.setVisibility(View.VISIBLE);
-                if(data.isExpand()){
-                    mIvArrow.setColorFilter(getBaseResources().getColor(R.color.black));
-                } else {
-                    mIvArrow.setColorFilter(getBaseResources().getColor(R.color.black_30), PorterDuff.Mode.SRC_IN);
-                }
-            }
-
             int depth = data.getDepth();
             int margin = (depth-1) * 14;
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mTvDesc.getLayoutParams();
@@ -80,6 +69,13 @@ public class SimpleExpandHolderData extends BaseSwipeHolderData {
 
             float alpha = 1.0f - (depth-1) * 0.4f;
             mTvDesc.setTextColor(alphaColor(alpha, Color.BLACK));
+
+            if(data.isLeaf()){
+                mIvArrow.setVisibility(View.GONE);
+            } else {
+                mIvArrow.setVisibility(View.VISIBLE);
+                mIvArrow.setColorFilter(alphaColor(alpha, Color.BLACK), PorterDuff.Mode.SRC_IN);
+            }
 
             if (data.mShowArrow) {
                 mIvArrow.setVisibility(View.VISIBLE);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.rhino.rv.swipe.SwipeItemLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.rhino.rv.swipe.SwipeItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="70dp"
@@ -12,11 +11,12 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -31,17 +31,17 @@
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text="text"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/arrow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:padding="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:padding="20dp"
                 android:src="@mipmap/ic_expand"
-                android:tint="@color/black"/>
+                android:tint="@color/black" />
 
         </RelativeLayout>
 

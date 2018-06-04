@@ -1,12 +1,8 @@
 package com.rhino.rv.tree;
 
-import android.support.annotation.NonNull;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import com.rhino.rv.SimpleRecyclerAdapter;
-import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.base.BaseHolderFactory;
 
 /**
@@ -23,87 +19,182 @@ public class TreeRecyclerAdapter extends SimpleRecyclerAdapter {
     }
 
     /**
-     * Expand or fold all.
+     * Expand all item recursively.
      *
-     * @param expand true expand， false fold.
+     * @param animate expand with animation or not.
      */
-    public void doExpandAll(boolean expand) {
-        for (int i = 0; i < getDataList().size(); i++) {
-            BaseHolderData data = getDataList().get(i);
-            if (data instanceof BaseTreeData) {
-                BaseTreeData d = (BaseTreeData) data;
-                if (!d.isLeaf() && d.isExpand() != expand) {
-                    d.setExpand(expand);
-                    updateData(getRealDataWhenExpandChange(getDataList(), i));
-                }
-            }
+    public void expandAll(boolean animate) {
+        for (int position = getDataList().size() - 1; position >= 0; position--) {
+            expandRecursively(position, animate);
         }
-        notifyDataSetChanged();
     }
 
     /**
-     * Deal the expand or fold.
+     * Expand an expandable item recursively.
      *
-     * @param data   the data.
-     * @param expand true expand， false fold.
+     * @param position position of the item.
+     * @param animate  expand with animation or not.
+     * @return the number of items that have been added.
      */
-    public boolean doExpand(BaseTreeData data, boolean expand) {
-        if (!data.isLeaf() && data.isExpand() != expand) {
-            data.setExpand(expand);
-            updateData(getRealDataWhenExpandChange(getDataList(), data.mHolder.getBindPosition()));
-            notifyDataSetChanged();
-            return true;
-        }
-        return false;
+    public int expandRecursively(int position, boolean animate) {
+        return expandRecursively(position, animate, true);
     }
 
     /**
-     * When you change the folding and unfolding state of a node, call this interface to obtain the real data.
+     * Expand an expandable item recursively.
      *
-     * @param mDataList the old data.
-     * @param position  the change position.
-     * @return new data list.
+     * @param position position of the item.
+     * @param animate  expand with animation or not.
+     * @param notify   notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
+     *                 yourself.
+     * @return the number of items that have been added.
      */
-    @NonNull
-    public List<BaseHolderData> getRealDataWhenExpandChange(List<? extends BaseHolderData> mDataList, int position) {
-        List<BaseHolderData> realDataList = new ArrayList<>();
-        for (int i = 0; i < mDataList.size(); i++) {
-            BaseHolderData data = mDataList.get(i);
-            realDataList.add(data);
-            if (data instanceof BaseTreeData) {
-                BaseTreeData d = (BaseTreeData) data;
-                if (i == position && !d.isLeaf()) {
-                    if (d.isExpand()) { // If it is expanded, add its first layer of son nodes
-                        realDataList.addAll(getRealDataWhenExpandChange(d.getChildList(), -1));
-                    } else { // Skip all the son nodes under this node
-                        i += setChildUnExpand(d);
-                    }
+    public int expandRecursively(int position, boolean animate, boolean notify) {
+        return expand(position, animate, notify, true);
+    }
+
+    /**
+     * Expand an expandable item.
+     *
+     * @param position position of the item.
+     * @param animate  expand with animation or not.
+     * @return the number of items that have been added.
+     */
+    public int expand(int position, boolean animate) {
+        return expand(position, animate, true, false);
+    }
+
+    /**
+     * Expand an expandable item.
+     *
+     * @param position  position of the item.
+     * @param animate   expand items with animation.
+     * @param notify    notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
+     *                  yourself.
+     * @param recursive expand an expandable item recursively.
+     * @return the number of items that have been added.
+     */
+    @SuppressWarnings("unchecked")
+    public int expand(int position, boolean animate, boolean notify, boolean recursive) {
+        BaseTreeData data = (BaseTreeData) getItem(position);
+        if (null == data || data.isExpanded() || data.isLeaf()) {
+            return 0;
+        }
+
+        int expandCount = recursiveExpand(position, recursive);
+        if (notify) {
+            if (animate) {
+                notifyItemChanged(data.getBindPosition());
+                notifyItemRangeInserted(data.getBindPosition() + 1, expandCount);
+            } else {
+                notifyDataSetChanged();
+            }
+        }
+        return expandCount;
+    }
+
+    /**
+     * Sets all child nodes in the node as expanded state
+     * and returns the total number of all collapsed nodes under that node.
+     *
+     * @param position position of the item.
+     * @return the total number of all collapsed nodes under that node.
+     */
+    @SuppressWarnings("unchecked")
+    public int recursiveExpand(int position, boolean recursive) {
+        BaseTreeData data = (BaseTreeData) getItem(position);
+        if (null == data || data.isExpanded() || data.isLeaf()) {
+            return 0;
+        }
+        data.setExpanded(true);
+        List childList = data.getChildList();
+        getDataList().addAll(position + 1, childList);
+        int expandCount = childList.size();
+
+        if (recursive) {
+            int childPosition = position + childList.size() - 1;
+            for (int i = childList.size() - 1; i >= 0; i--, childPosition--) {
+                BaseTreeData child = (BaseTreeData) childList.get(i);
+                if (!child.isExpanded() && !child.isLeaf()) {
+                    expandCount += recursiveExpand(childPosition + 1, true);
                 }
             }
         }
-        return realDataList;
+        return expandCount;
+    }
+
+    /**
+     * Collapse all item recursively.
+     *
+     * @param animate expand with animation or not.
+     */
+    public void collapseAll(boolean animate) {
+        for (int position = getDataList().size() - 1; position >= 0; position--) {
+            collapse(position, animate);
+        }
+    }
+
+    /**
+     * Collapse an expandable item that has been expanded.
+     *
+     * @param position position of the item.
+     * @param animate  collapse with animation or not.
+     * @return the number of subItems collapsed.
+     */
+    public int collapse(int position, boolean animate) {
+        return collapse(position, animate, true);
+    }
+
+    /**
+     * Collapse an expandable item that has been expanded..
+     *
+     * @param position position of the item.
+     * @param animate  collapse with animation or not.
+     * @param notify   notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
+     *                 yourself.
+     * @return the number of subItems collapsed.
+     */
+    public int collapse(int position, boolean animate, boolean notify) {
+        BaseTreeData data = (BaseTreeData) getItem(position);
+        if (null == data || !data.isExpanded() || data.isLeaf()) {
+            return 0;
+        }
+        int collapseCount = recursiveCollapse(position);
+        if (notify) {
+            if (animate) {
+                notifyItemChanged(data.getBindPosition());
+                notifyItemRangeRemoved(data.getBindPosition() + 1, collapseCount);
+            } else {
+                notifyDataSetChanged();
+            }
+        }
+        return collapseCount;
     }
 
     /**
      * Sets all child nodes in the node as collapsed state
      * and returns the total number of all expanded nodes under that node.
      *
-     * @param data the node.
+     * @param position position of the item.
      * @return the total number of all expanded nodes under that node.
      */
-    public int setChildUnExpand(BaseTreeData data) {
-        if (data.isLeaf()) {
+    public int recursiveCollapse(int position) {
+        BaseTreeData data = (BaseTreeData) getItem(position);
+        if (null == data || !data.isExpanded() || data.isLeaf()) {
             return 0;
         }
-        int count = 0;
-        for (int i = 0; i < data.getChildList().size(); i++) {
-            count++;
-            BaseTreeData child = data.getChildList().get(i);
-            if (null != child && !child.isLeaf() && child.isExpand()) {
-                child.setExpand(false);
-                count += setChildUnExpand(child);
+        data.setExpanded(false);
+        int collapseCount = 0;
+        List<? extends BaseTreeData> childList = data.getChildList();
+        for (int i = childList.size() - 1; i >= 0; i--) {
+            BaseTreeData child = childList.get(i);
+            if (child.isExpanded() && !child.isLeaf()) {
+                collapseCount += recursiveCollapse(getItemPosition(child));
             }
+            getDataList().remove(child);
+            collapseCount++;
         }
-        return count;
+        return collapseCount;
     }
+
 }

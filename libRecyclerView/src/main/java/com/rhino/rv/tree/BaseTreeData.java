@@ -17,7 +17,7 @@ public abstract class BaseTreeData extends BaseHolderData {
     /**
      * Whether expanded
      **/
-    private boolean isExpand = false;
+    private boolean isExpanded = false;
     /**
      * The child node list
      **/
@@ -46,17 +46,17 @@ public abstract class BaseTreeData extends BaseHolderData {
      *
      * @return true expanded.
      */
-    public boolean isExpand() {
-        return isExpand;
+    public boolean isExpanded() {
+        return isExpanded;
     }
 
     /**
      * Set expand status.
      *
-     * @param isExpand true expanded.
+     * @param isExpanded true expanded.
      */
-    public void setExpand(boolean isExpand) {
-        this.isExpand = isExpand;
+    public void setExpanded(boolean isExpanded) {
+        this.isExpanded = isExpanded;
     }
 
     /**
@@ -87,19 +87,99 @@ public abstract class BaseTreeData extends BaseHolderData {
     }
 
     /**
-     * Deal expand or fold and refresh ui.
+     * Expand an expandable item recursively.
      *
-     * @param expand true expand， false fold.
-     * @return true success
+     * @param animate expand items with animation.
+     * @return the number of items that have been added.
      */
-    public boolean doExpand(boolean expand) {
+    @SuppressWarnings("unchecked")
+    public int expandRecursively(boolean animate) {
+        return expandRecursively(animate, true);
+    }
+
+    /**
+     * Expand an expandable item recursively.
+     *
+     * @param animate expand items with animation.
+     * @param notify  notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
+     *                yourself.
+     * @return the number of items that have been added.
+     */
+    @SuppressWarnings("unchecked")
+    public int expandRecursively(boolean animate, boolean notify) {
+        return expand(animate, notify, true);
+    }
+
+    /**
+     * Expand an expandable item.
+     *
+     * @param animate expand items with animation.
+     * @return the number of items that have been added.
+     */
+    @SuppressWarnings("unchecked")
+    public int expand(boolean animate) {
+        return expand(animate, true);
+    }
+
+    /**
+     * Expand an expandable item.
+     *
+     * @param animate expand items with animation.
+     * @param notify  notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
+     *                yourself.
+     * @return the number of items that have been added.
+     */
+    @SuppressWarnings("unchecked")
+    public int expand(boolean animate, boolean notify) {
+        return expand(animate, notify, false);
+    }
+
+    /**
+     * Expand an expandable item.
+     *
+     * @param animate   expand items with animation.
+     * @param notify    notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
+     *                  yourself.
+     * @param recursive expand an expandable item recursively.
+     * @return the number of items that have been added.
+     */
+    @SuppressWarnings("unchecked")
+    public int expand(boolean animate, boolean notify, boolean recursive) {
         if (null != mHolder) {
             TreeRecyclerAdapter adapter = (TreeRecyclerAdapter) mHolder.getAdapter();
             if (null != adapter) {
-                return adapter.doExpand(this, expand);
+                return adapter.expand(getBindPosition(), animate, notify, recursive);
             }
         }
-        return false;
+        return 0;
+    }
+
+    /**
+     * Collapse an expandable item that has been expanded..
+     *
+     * @param animate collapse with animation or not.
+     * @return the number of subItems collapsed.
+     */
+    public int collapse(boolean animate) {
+        return collapse(animate, true);
+    }
+
+    /**
+     * Collapse an expandable item that has been expanded.
+     *
+     * @param animate collapse with animation or not.
+     * @param notify  notify the RecyclerView to rebind items, <strong>false</strong> if you want to do it
+     *                yourself.
+     * @return the number of subItems collapsed.
+     */
+    public int collapse(boolean animate, boolean notify) {
+        if (null != mHolder) {
+            TreeRecyclerAdapter adapter = (TreeRecyclerAdapter) mHolder.getAdapter();
+            if (null != adapter) {
+                return adapter.collapse(getBindPosition(), animate, notify);
+            }
+        }
+        return 0;
     }
 
 }

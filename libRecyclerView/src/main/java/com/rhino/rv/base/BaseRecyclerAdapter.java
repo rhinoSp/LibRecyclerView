@@ -64,6 +64,15 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
         return mDataList.size();
     }
 
+    @Nullable
+    public BaseHolderData getItem(int position) {
+        return 0 <= position && position < mDataList.size() ? mDataList.get(position) : null;
+    }
+
+    public int getItemPosition(BaseHolderData item) {
+        return item != null && mDataList != null && !mDataList.isEmpty() ? mDataList.indexOf(item) : -1;
+    }
+
     /**
      * Get the RecyclerView instance which started observing this adapter.
      * @return The RecyclerView instance which started observing this adapter.

@@ -91,11 +91,7 @@ public class PullRefreshActivity extends AppCompatActivity {
             mItemClickListener = new IOnClickListener<SimpleExpandHolderData>() {
                 @Override
                 public void onClick(View v, SimpleExpandHolderData data, int position) {
-                    if (data.isLeaf()) {
-                        showToast(data.mDesc);
-                    } else {
-                        data.doExpand(!data.isExpand());
-                    }
+                    showToast(data.mDesc);
                 }
             };
         }
