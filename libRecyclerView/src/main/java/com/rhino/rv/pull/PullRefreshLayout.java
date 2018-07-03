@@ -28,8 +28,9 @@ import com.rhino.rv.pull.impl.IOnPullStatusChangeListener;
  *
  * &lt;/com.rhino.rl.pr.PullRefreshLayout&gt
  * </pre>
- * Created by LuoLin on 2017/4/13.
- **/
+ * @author LuoLin
+ * @since Create on 2017/4/13.
+ */
 public class PullRefreshLayout extends RelativeLayout {
 
     public enum Style {

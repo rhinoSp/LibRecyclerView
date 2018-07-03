@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by LuoLin on 2016/11/21.
- **/
+ * @author LuoLin
+ * @since Create on 2016/11/21.
+ */
 public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
     private BaseHolderFactory mHolderFactory;

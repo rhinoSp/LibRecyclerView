@@ -3,7 +3,8 @@ package com.rhino.librecyclerview.utils;
 import android.support.annotation.ColorInt;
 
 /**
- * <p>The comm colors<p>
+ * <p>The utils of color.<p>
+ *
  * @author LuoLin
  * @since Created on 2016/11/1.
  **/
@@ -56,12 +57,13 @@ public final class ColorUtils {
 
     /**
      * change the color alpha
+     *
      * @param alpha the alpha of color, 0.1f-1.0f
      * @param color the color
      * @return recolor
      */
     @ColorInt
     public static int alphaColor(float alpha, @ColorInt int color) {
-        return (Math.round(alpha * (color >>> 24)) << 24 ) | (color & 0x00FFFFFF);
+        return (Math.round(alpha * (color >>> 24)) << 24) | (color & 0x00FFFFFF);
     }
 }

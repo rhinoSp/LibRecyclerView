@@ -10,8 +10,9 @@ import android.view.ViewGroup;
 /**
  * <p>A {@link android.support.v7.widget.RecyclerView.LayoutManager} implementation which provides
  * similar functionality to {@link android.widget.GridView}.</p>
- * Created by LuoLin on 2017/8/25.
- **/
+ * @author LuoLin
+ * @since Create on 2017/8/25.
+ */
 public class GridLayoutManager extends RecyclerView.LayoutManager {
 
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;

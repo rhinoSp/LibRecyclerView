@@ -35,11 +35,11 @@
 
             <ImageView
                 android:id="@+id/arrow"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:padding="20dp"
+                android:padding="30dp"
                 android:src="@mipmap/ic_expand"
                 android:tint="@color/black" />
 

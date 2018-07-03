@@ -11,8 +11,9 @@ import android.widget.TextView;
 import com.rhino.rv.base.BaseHolder;
 
 /**
- * Created by LuoLin on 2017/6/16
- **/
+ * @author LuoLin
+ * @since Create on 2017/6/16.
+ */
 public abstract class BaseSwipeHolder<T extends BaseSwipeHolderData> extends BaseHolder<T>
         implements SwipeItemLayout.IOnSwipeChangeListener {
 

@@ -11,8 +11,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 
 
 /**
- * Created by LuoLin on 2016/11/21.
- **/
+ * @author LuoLin
+ * @since Create on 2016/11/21.
+ */
 public abstract class BaseHolderData {
     /**
      * The default item span size.

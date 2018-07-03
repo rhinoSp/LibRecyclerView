@@ -42,8 +42,9 @@ import com.rhino.librecyclerview.R;
  *
  *&lt;/RelativeLayout&gt
  *</pre>
- * @since Created by LuoLin on 2018/1/8.
- **/
+ * @author LuoLin
+ * @since Create on 2018/1/8.
+ */
 public class CircleIndicator extends View {
 
     private static final String TAG = "CircleIndicator";

@@ -5,8 +5,9 @@ import android.support.v7.widget.GridLayoutManager;
 import com.rhino.rv.base.BaseRecyclerAdapter;
 
 /**
- * Created by LuoLin on 2016/11/21.
- **/
+ * @author LuoLin
+ * @since Create on 2016/11/21.
+ */
 public class SimpleGridSpan extends GridLayoutManager.SpanSizeLookup {
 
     private BaseRecyclerAdapter mAdapter;

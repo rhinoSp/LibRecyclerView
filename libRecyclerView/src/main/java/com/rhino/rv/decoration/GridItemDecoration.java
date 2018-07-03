@@ -5,8 +5,9 @@ import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 
 /**
- * Created by LuoLin on 2017/8/26.
- **/
+ * @author LuoLin
+ * @since Create on 2017/8/26.
+ */
 public class GridItemDecoration extends SimpleItemDecoration {
 
     private int mColumnCount;

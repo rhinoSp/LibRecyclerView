@@ -13,8 +13,9 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @since Created by LuoLin on 2018/1/10.
- **/
+ * @author LuoLin
+ * @since Create on 2018/1/10.
+ */
 public class DragRecyclerAdapter extends SwipeListAdapter implements IOnItemDragCallbackListener {
 
     private ItemTouchHelper mItemTouchHelper;

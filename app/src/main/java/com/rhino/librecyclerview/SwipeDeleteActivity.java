@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.rhino.librecyclerview.utils.ColorUtils;
+import com.rhino.librecyclerview.utils.DrawableUtils;
 import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.decoration.SimpleItemDecoration;
 import com.rhino.rv.impl.IOnClickListener;
@@ -36,7 +38,7 @@ public class SwipeDeleteActivity extends AppCompatActivity {
     private SwipeListAdapter mSwipeListAdapter;
     private PullRefreshLayout mPullRefreshLayout;
 
-    private int mRootItemCount = 9;
+    private int mRootItemCount = 19;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,8 @@ public class SwipeDeleteActivity extends AppCompatActivity {
             root.mSwipeMenuList = new ArrayList<>();
             SwipeMenuItem item = new SwipeMenuItem();
             item.setWidth(210);
-            item.setBackgroundDrawable(new ColorDrawable(Color.GRAY));
+            item.setBackgroundDrawable(DrawableUtils.buildColorStateListDrawable(0, 0,
+                    ColorUtils.alphaColor(0.5f, Color.GRAY), Color.GRAY));
             item.setIconWidth(90);
             item.setIconHeight(90);
             item.setText("edit");
@@ -85,7 +88,8 @@ public class SwipeDeleteActivity extends AppCompatActivity {
 
             item = new SwipeMenuItem();
             item.setWidth(210);
-            item.setBackgroundDrawable(new ColorDrawable(Color.RED));
+            item.setBackgroundDrawable(DrawableUtils.buildColorStateListDrawable(0, 0,
+                    ColorUtils.alphaColor(0.5f, Color.RED), Color.RED));
             item.setIconDrawable(getResources().getDrawable(R.mipmap.ic_launcher));
             item.setIconColor(0);
             item.setText("delete");

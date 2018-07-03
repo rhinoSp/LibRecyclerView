@@ -8,8 +8,9 @@ import com.rhino.rv.drag.impl.IOnItemDragCallbackListener;
 
 
 /**
- * @since Created by LuoLin on 2018/1/10.
- **/
+ * @author LuoLin
+ * @since Create on 2018/1/10.
+ */
 public class DragItemTouchCallback extends ItemTouchHelper.Callback {
 
     private IOnItemDragCallbackListener mItemDragCallbackListener;

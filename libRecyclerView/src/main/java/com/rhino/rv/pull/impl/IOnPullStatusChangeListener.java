@@ -3,8 +3,9 @@ package com.rhino.rv.pull.impl;
 import android.view.View;
 
 /**
- * Created by LuoLin on 2017/4/13.
- **/
+ * @author LuoLin
+ * @since Create on 2017/4/13.
+ */
 public interface IOnPullStatusChangeListener {
 
     enum PullStatus {

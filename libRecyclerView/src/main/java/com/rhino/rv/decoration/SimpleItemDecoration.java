@@ -11,7 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by LuoLin on 2017/6/16
+ * @author LuoLin
+ * @since Create on 2017/6/16.
  */
 public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
 

@@ -6,8 +6,9 @@ import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.base.BaseHolderFactory;
 
 /**
- * Created by LuoLin on 2016/11/21.
- **/
+ * @author LuoLin
+ * @since Create on 2016/11/21.
+ */
 public class TreeRecyclerAdapter extends SimpleRecyclerAdapter {
 
     public TreeRecyclerAdapter() {

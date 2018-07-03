@@ -73,8 +73,9 @@ import java.lang.reflect.Method;
  * <p>
  * Notice: Only two child view.
  * </p>
- * Created by LuoLin on 2017/6/16.
- **/
+ * @author LuoLin
+ * @since Create on 2017/6/16.
+ */
 public class SwipeItemLayout extends FrameLayout {
 
     private static final String INSTANCE_STATUS = "instance_status";
@@ -324,7 +325,9 @@ public class SwipeItemLayout extends FrameLayout {
         if (t instanceof AdapterView) {
             AdapterView view = (AdapterView) t;
             int p = view.getPositionForView(SwipeItemLayout.this);
-            if (p == AdapterView.INVALID_POSITION) return false;
+            if (p == AdapterView.INVALID_POSITION) {
+                return false;
+            }
             long vId = view.getItemIdAtPosition(p);
             boolean handled = false;
             try {
@@ -386,15 +389,15 @@ public class SwipeItemLayout extends FrameLayout {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             setPressed(false);
-            if (isOpened()) {
-                closeWithAnim();
-            }
+            closeWithAnim();
             return performClick();
         }
 
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
-            setPressed(true);
+            if (isClosed()) {
+                setPressed(true);
+            }
             return true;
         }
 
@@ -504,18 +507,18 @@ public class SwipeItemLayout extends FrameLayout {
             return;
         }
         mPreStatus = SwipeStatus.Moving;
-        smoothSlideTo(1);
+        smoothSlideTo(true);
     }
 
     /**
      * Close swipe menu with animation.
      */
     public void closeWithAnim() {
-        if (!isOpened()) {
+        if (isClosed()) {
             return;
         }
         mPreStatus = SwipeStatus.Moving;
-        smoothSlideTo(0);
+        smoothSlideTo(false);
     }
 
     /**
@@ -525,7 +528,7 @@ public class SwipeItemLayout extends FrameLayout {
         if (isOpened()) {
             return;
         }
-        slideTo(1);
+        slideTo(true);
     }
 
     /**
@@ -535,14 +538,14 @@ public class SwipeItemLayout extends FrameLayout {
         if (!isOpened()) {
             return;
         }
-        slideTo(0);
+        slideTo(false);
     }
 
     /**
      * Close swipe menu.
      */
     public void reset() {
-        slideTo(0);
+        slideTo(false);
     }
 
     /**
@@ -586,12 +589,12 @@ public class SwipeItemLayout extends FrameLayout {
     /**
      * Open or close the swipe menu.
      *
-     * @param isOpen 1 - open，0 - close
+     * @param isOpen True - open，False - close
      */
-    private void smoothSlideTo(int isOpen) {
+    private void smoothSlideTo(boolean isOpen) {
         if (mDragHelper.smoothSlideViewTo(mTopView, getCloseOrOpenTopViewFinalLeft(isOpen), getPaddingTop() + mTopLp.topMargin)) {
             ViewCompat.postInvalidateOnAnimation(this);
-            if (isOpen == 1) {
+            if (isOpen) {
                 mBottomView.setVisibility(VISIBLE);
             }
         }
@@ -600,10 +603,10 @@ public class SwipeItemLayout extends FrameLayout {
     /**
      * Open or close the swipe menu.
      *
-     * @param isOpen 1 - open，0 - close
+     * @param isOpen True - open，False - close
      */
-    private void slideTo(int isOpen) {
-        if (isOpen == 1) {
+    private void slideTo(boolean isOpen) {
+        if (isOpen) {
             alphaBottomView(1.0f);
             mBottomView.setVisibility(VISIBLE);
             mCurrentStatus = SwipeStatus.Opened;
@@ -623,12 +626,12 @@ public class SwipeItemLayout extends FrameLayout {
         requestLayout();
     }
 
-    private int getCloseOrOpenTopViewFinalLeft(int isOpen) {
+    private int getCloseOrOpenTopViewFinalLeft(boolean isOpen) {
         int left = getPaddingLeft() + mTopLp.leftMargin;
         if (mSwipeDirection == SwipeDirection.Left) {
-            left = left - isOpen * mDragDistance;
+            left = left - (isOpen ? mDragDistance : 0);
         } else {
-            left = left + isOpen * mDragDistance;
+            left = left + (isOpen ? mDragDistance : 0);
         }
         return left;
     }

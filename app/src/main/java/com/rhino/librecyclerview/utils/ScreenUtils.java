@@ -8,8 +8,10 @@ import android.view.Display;
 import android.view.WindowManager;
 
 /**
- * <p>Some commonly used interface about screen</p>
- * Created by LuoLin on 2016/9/1.
+ * <p>The utils of screen.</p>
+ *
+ * @author LuoLin
+ * @since Create on 2016/9/1.
  **/
 public class ScreenUtils {
 

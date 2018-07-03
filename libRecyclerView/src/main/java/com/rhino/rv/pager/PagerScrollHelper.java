@@ -14,8 +14,9 @@ import android.view.View;
 
 /**
  * <p>The scroll helper of RecyclerView page.</p>
- * Created by LuoLin on 2017/8/25.
- **/
+ * @author LuoLin
+ * @since Create on 2017/8/25.
+ */
 public class PagerScrollHelper implements View.OnTouchListener {
 
     private static final String TAG = "PagingScrollHelper";

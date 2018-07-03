@@ -11,8 +11,9 @@ import android.widget.LinearLayout;
 import com.rhino.rv.swipe.impl.IOnSwipeMenuItemClickListener;
 
 /**
- * Created by LuoLin on 2017/6/16.
- **/
+ * @author LuoLin
+ * @since Create on 2017/6/16.
+ */
 public class SwipeMenuItem {
 
     private int mId;

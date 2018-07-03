@@ -11,8 +11,9 @@ import android.view.View;
 import com.rhino.rv.pull.impl.IPull;
 
 /**
- * Created by LuoLin on 2017/4/13.
- **/
+ * @author LuoLin
+ * @since Create on 2017/4/13.
+ */
 public class PullRecyclerView extends RecyclerView implements IPull {
 
     public PullRecyclerView(Context context) {

@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by LuoLin on 2016/11/21.
- **/
+ * @author LuoLin
+ * @since Create on 2016/11/21.
+ */
 public abstract class BaseHolder<T extends BaseHolderData> extends RecyclerView.ViewHolder {
 
     /**
@@ -141,7 +142,7 @@ public abstract class BaseHolder<T extends BaseHolderData> extends RecyclerView.
      * @return mResources
      */
     @NonNull
-    final protected Resources getBaseResources() {
+    final protected Resources getResources() {
         if (null == mResources) {
             mResources = getContext().getResources();
         }

@@ -10,8 +10,9 @@ import com.rhino.rv.base.BaseHolderFactory;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * Created by LuoLin on 2016/11/21.
- **/
+ * @author LuoLin
+ * @since Create on 2016/11/21.
+ */
 public class SimpleHolderFactory extends BaseHolderFactory {
     @SuppressWarnings("all")
     @Override
