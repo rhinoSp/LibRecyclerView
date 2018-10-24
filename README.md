@@ -2,7 +2,7 @@
 The library of RecyclerView.
 
 # Screenshot
-![](https://github.com/rhinoSp/CircleIndicator/blob/master/ScreenCapture/ScreenCapture.gif)  
+![](https://github.com/rhinoSp/LibRecyclerView/blob/master/ScreenCapture/ScreenCapture.gif)  
 
 # How to
 To get a Git project into your build:
@@ -20,7 +20,7 @@ allprojects {
 **Step 2**. Add the dependency<br>
 ```Java
 dependencies {
-    implementation 'com.github.rhinoSp:LibRecyclerView:v1.0.2'
+    implementation 'com.github.rhinoSp:LibRecyclerView:v1.0.4'
 }
 ```
 
