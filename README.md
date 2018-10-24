@@ -1,7 +1,7 @@
 # LibRecyclerView
 The library of RecyclerView.
 
-# Screenshot
+# LibRecyclerView
 ![](https://github.com/rhinoSp/LibRecyclerView/blob/master/ScreenCapture/ScreenCapture.gif)  
 
 # How to
