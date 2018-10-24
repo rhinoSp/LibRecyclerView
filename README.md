@@ -1,6 +1,9 @@
 # LibRecyclerView
 The library of RecyclerView.
 
+# Screenshot
+![](https://github.com/rhinoSp/CircleIndicator/blob/master/ScreenCapture/ScreenCapture.gif)  
+
 # How to
 To get a Git project into your build:
 
