@@ -52,11 +52,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void refreshList() {
-        mBaseHolderDataList.add(buildItemData("左划删除", SwipeDeleteActivity.class));
+        mBaseHolderDataList.add(buildItemData("左划菜单", SwipeDeleteActivity.class));
         mBaseHolderDataList.add(buildItemData("下拉刷新，上拉加载", PullRefreshActivity.class));
         mBaseHolderDataList.add(buildItemData("无限层级展开", SimpleExpandActivity.class));
         mBaseHolderDataList.add(buildItemData("RecyclerView实现ViewPager", ViewPagerActivity.class));
-        mBaseHolderDataList.add(buildItemData("混合Item", MixItemActivity.class));
+        mBaseHolderDataList.add(buildItemData("混合布局Item", MixItemActivity.class));
 
         mSimpleRecyclerAdapter.updateData(mBaseHolderDataList);
         mSimpleRecyclerAdapter.notifyDataSetChanged();
