@@ -10,6 +10,8 @@ import android.support.annotation.ColorInt;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.rhino.rv.base.BaseHolder;
+
 /**
  * @author LuoLin
  * @since Create on 2017/6/16.
@@ -42,6 +44,10 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+        RecyclerView.ViewHolder viewHolder = parent.getChildViewHolder(view);
+        if (viewHolder instanceof BaseHolder && !((BaseHolder)viewHolder).getBindData().mDecorationEnable) {
+            return;
+        }
         outRect.set(mLineWidth / 2, mLineWidth / 2, mLineWidth / 2, mLineWidth / 2);
     }
 
@@ -51,6 +57,10 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
         int relParentHeight = getContainerUsableHeight(parent);
         for (int i = 0, L = parent.getChildCount(); i < L; i++) {
             View child = parent.getChildAt(i);
+            RecyclerView.ViewHolder viewHolder = parent.getChildViewHolder(child);
+            if (viewHolder instanceof BaseHolder && !((BaseHolder)viewHolder).getBindData().mDecorationEnable) {
+                continue;
+            }
             int childLeft = child.getLeft();
             int childRight = child.getRight();
             int childTop = child.getTop();

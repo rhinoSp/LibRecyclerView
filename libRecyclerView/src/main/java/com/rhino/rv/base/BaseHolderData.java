@@ -43,6 +43,10 @@ public abstract class BaseHolderData {
      * The touch helper of item.
      */
     public ItemTouchHelper mItemTouchHelper;
+    /**
+     * The enable of decoration.
+     */
+    public boolean mDecorationEnable = true;
 
     /**
      * Get the layout resources id.
