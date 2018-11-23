@@ -57,6 +57,9 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
         int relParentHeight = getContainerUsableHeight(parent);
         for (int i = 0, L = parent.getChildCount(); i < L; i++) {
             View child = parent.getChildAt(i);
+            if (child == null) {
+                continue;
+            }
             RecyclerView.ViewHolder viewHolder = parent.getChildViewHolder(child);
             if (viewHolder instanceof BaseHolder && !((BaseHolder)viewHolder).getBindData().mDecorationEnable) {
                 continue;
