@@ -12,6 +12,7 @@ import com.rhino.rv.impl.IOnClickListener;
 import com.rhino.librecyclerview.R;
 import com.rhino.librecyclerview.utils.ColorUtils;
 import com.rhino.librecyclerview.utils.ScreenUtils;
+import com.rhino.rv.tree.BaseTreeData;
 
 import java.util.Random;
 
@@ -19,7 +20,7 @@ import java.util.Random;
  * @author LuoLin
  * @since Create on 2018/4/20.
  */
-public class SingleTextData extends BaseHolderData {
+public class SingleTextData extends BaseTreeData {
 
     public boolean mRandom;
     public String mDesc;

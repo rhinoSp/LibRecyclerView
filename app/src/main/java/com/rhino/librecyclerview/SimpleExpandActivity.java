@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
+import com.rhino.librecyclerview.data.SimpleExpandHolderData1;
+import com.rhino.librecyclerview.data.SingleTextData;
 import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.decoration.SimpleItemDecoration;
 import com.rhino.rv.impl.IOnClickListener;
@@ -67,7 +69,7 @@ public class SimpleExpandActivity extends AppCompatActivity {
         mBaseHolderDataList.clear();
         SimpleExpandHolderData root;
         SimpleExpandHolderData child1;
-        SimpleExpandHolderData child2;
+        SimpleExpandHolderData1 child2;
         for (int i = 0; i < mRootItemCount; i++) {
             root = new SimpleExpandHolderData();
             root.mItemSpanSize = GRID_SPAN_ITEM;
@@ -84,10 +86,9 @@ public class SimpleExpandActivity extends AppCompatActivity {
                 childList1.add(child1);
                 List<BaseTreeData> childList2 = new ArrayList<>();
                 for (int k = 0; k < 5; k++) {
-                    child2 = new SimpleExpandHolderData();
+                    child2 = new SimpleExpandHolderData1();
                     child2.mDesc = "child " + i + " " + j + " " + k;
                     child2.setDepth(3);
-                    child2.mItemClickListener = buildItemClickListener();
                     childList2.add(child2);
                 }
                 child1.setChildList(childList2);
