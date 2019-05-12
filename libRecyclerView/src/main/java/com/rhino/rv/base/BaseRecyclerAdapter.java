@@ -3,6 +3,7 @@ package com.rhino.rv.base;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -35,9 +36,18 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     }
 
     @Override
-    public BaseHolder onCreateViewHolder(ViewGroup parent, int position) {
-        BaseHolder holder = mHolderFactory.buildHolder(parent, mDataList.get(position).getLayoutRes(),
-                mDataList.get(position).getHolderClassName());
+    public BaseHolder onCreateViewHolder(ViewGroup parent, int layoutResId) {
+        String holderClassName = "";
+        for (BaseHolderData data : mDataList) {
+            if (data.getLayoutRes() == layoutResId) {
+                holderClassName = data.getHolderClassName();
+                break;
+            }
+        }
+        if (TextUtils.isEmpty(holderClassName)) {
+            throw new RuntimeException("The holder class name is null!");
+        }
+        BaseHolder holder = mHolderFactory.buildHolder(parent, layoutResId, holderClassName);
         holder.setAdapter(this);
         holder.setParentView(parent);
         return holder;
@@ -45,7 +55,7 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
     @Override
     public int getItemViewType(int position) {
-        return position;
+        return mDataList.get(position).getLayoutRes();
     }
 
     @SuppressWarnings("unchecked")
