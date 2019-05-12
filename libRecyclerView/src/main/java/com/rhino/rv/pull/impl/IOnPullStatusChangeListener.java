@@ -35,4 +35,6 @@ public interface IOnPullStatusChangeListener {
 
     void onPullChanged(PullStatus status);
 
+    void releaseAll();
+
 }

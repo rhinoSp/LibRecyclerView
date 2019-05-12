@@ -46,7 +46,6 @@ public class SimpleExpandActivity extends AppCompatActivity {
     private void initView() {
         mPullRefreshLayout = findViewById(R.id.PullRefreshLayout);
         mPullRefreshLayout.setStyle(PullRefreshLayout.Style.FLEXIBLE);
-        mPullRefreshLayout.setBackgroundColor(Color.BLACK);
 
         PullRecyclerView mPullRecyclerView = findViewById(R.id.PullRecyclerView);
         mSwipeListAdapter = new SwipeListAdapter();

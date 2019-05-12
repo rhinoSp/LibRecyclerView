@@ -18,6 +18,8 @@ import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.decoration.SimpleItemDecoration;
 import com.rhino.rv.impl.IOnClickListener;
+import com.rhino.rv.pull.DefaultOnPullDownStatusChangeListener;
+import com.rhino.rv.pull.DefaultOnPullUpStatusChangeListener;
 import com.rhino.rv.pull.PullRecyclerView;
 import com.rhino.rv.pull.PullRefreshLayout;
 import com.rhino.rv.pull.impl.IOnPullStatusChangeListener;
@@ -52,10 +54,37 @@ public class PullRefreshActivity extends AppCompatActivity {
     private void initView() {
         mPullRefreshLayout = findViewById(R.id.PullRefreshLayout);
         mPullRefreshLayout.setStyle(PullRefreshLayout.Style.PULL_REFRESH);
-        mPullRefreshLayout.setOnPullDownStatusChangeListener(mOnPullDownStatusChangeListener);
-        mPullRefreshLayout.setOnPullUpStatusChangeListener(mOnPullUpStatusChangeListener);
+        mPullRefreshLayout.setOnPullDownStatusChangeListener(new DefaultOnPullDownStatusChangeListener(this) {
+
+            @Override
+            public void onPullChanged(PullStatus status) {
+                super.onPullChanged(status);
+                Log.d(TAG, "status = " + status);
+                switch (status) {
+                    case START_REFRESHING:
+                        requestData();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+        mPullRefreshLayout.setOnPullUpStatusChangeListener(new DefaultOnPullUpStatusChangeListener(this) {
+
+            @Override
+            public void onPullChanged(PullStatus status) {
+                super.onPullChanged(status);
+                Log.d(TAG, "status = " + status);
+                switch (status) {
+                    case START_REFRESHING:
+                        requestData();
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
         mPullRefreshLayout.setAutoLoad(true);
-        mPullRefreshLayout.setBackgroundColor(Color.BLACK);
 
         PullRecyclerView mPullRecyclerView = findViewById(R.id.PullRecyclerView);
         mSimpleRecyclerAdapter = new SwipeListAdapter();
@@ -109,92 +138,6 @@ public class PullRefreshActivity extends AppCompatActivity {
         }, 2000);
         return true;
     }
-
-    private IOnPullStatusChangeListener mOnPullDownStatusChangeListener = new IOnPullStatusChangeListener() {
-
-        private View mPullHeaderView;
-        private ProgressBar mPullHeaderProgress;
-        private TextView mPullHeaderText;
-
-        @Override
-        public View getView() {
-            mPullHeaderView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_pull_down_refresh_header, null, false);
-            mPullHeaderProgress = mPullHeaderView.findViewById(R.id.header_progress);
-            mPullHeaderText = mPullHeaderView.findViewById(R.id.header_txt);
-            return mPullHeaderView;
-        }
-
-        @Override
-        public void onPullChanged(PullStatus status) {
-            Log.d(TAG, "status = " + status);
-            switch (status) {
-                case CANCEL_REFRESH:
-                    break;
-                case PULL_REFRESH:
-                    mPullHeaderProgress.setVisibility(View.GONE);
-                    mPullHeaderText.setText("Pull down refresh");
-                    break;
-                case RELEASE_TO_REFRESH:
-                    mPullHeaderProgress.setVisibility(View.GONE);
-                    mPullHeaderText.setText("Release to refresh");
-                    break;
-                case START_REFRESHING:
-                    requestData();
-                    mPullHeaderProgress.setVisibility(View.VISIBLE);
-                    mPullHeaderText.setText("Refreshing");
-                    break;
-                case STOP_REFRESH:
-                    mPullHeaderProgress.setVisibility(View.GONE);
-                    mPullHeaderText.setText("Stop refresh");
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
-
-    private IOnPullStatusChangeListener mOnPullUpStatusChangeListener = new IOnPullStatusChangeListener() {
-
-        private View mPullFooterView;
-        private ProgressBar mPullFooterProgress;
-        private TextView mPullFooterText;
-
-        @Override
-        public View getView() {
-            mPullFooterView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_pull_up_load_footer, null, false);
-            mPullFooterProgress = mPullFooterView.findViewById(R.id.footer_progress);
-            mPullFooterText = mPullFooterView.findViewById(R.id.footer_txt);
-            return mPullFooterView;
-        }
-
-        @Override
-        public void onPullChanged(PullStatus status) {
-            Log.d(TAG, "status = " + status);
-            switch (status) {
-                case CANCEL_REFRESH:
-                    break;
-                case PULL_REFRESH:
-                    mPullFooterProgress.setVisibility(View.GONE);
-                    mPullFooterText.setText("Pull up refresh");
-                    break;
-                case RELEASE_TO_REFRESH:
-                    mPullFooterProgress.setVisibility(View.GONE);
-                    mPullFooterText.setText("Release to refresh");
-                    break;
-                case START_REFRESHING:
-                    requestData();
-                    mPullFooterProgress.setVisibility(View.VISIBLE);
-                    mPullFooterText.setText("Refreshing");
-                    break;
-                case STOP_REFRESH:
-                    mPullFooterProgress.setVisibility(View.GONE);
-                    mPullFooterText.setText("Stop refresh");
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
 
     protected void showToast(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();

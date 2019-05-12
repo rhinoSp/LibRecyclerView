@@ -208,6 +208,17 @@ public class PullRefreshLayout extends RelativeLayout {
         return mIsPulled || super.dispatchTouchEvent(ev);
     }
 
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (mPullDownListener != null) {
+            mPullDownListener.releaseAll();
+        }
+        if (mPullUpListener != null) {
+            mPullUpListener.releaseAll();
+        }
+    }
+
     /**
      * change dp to px
      *

@@ -9,7 +9,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_margin="8dp"
+        android:layout_margin="10dp"
         android:background="@drawable/selector_rect_nor_1bbc9b_pre_881bbc9b_cor9"
         android:gravity="center"
         android:text="保存"
