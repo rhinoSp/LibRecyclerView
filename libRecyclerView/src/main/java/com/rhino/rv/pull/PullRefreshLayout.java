@@ -387,8 +387,11 @@ public class PullRefreshLayout extends RelativeLayout {
             }
         } else {
             mPullStatus = STATUS_PULL_NONE;
-            if (null != mPullUpListener) {
+            if (null != mPullDownListener) {
                 mPullDownListener.onPullChanged(IOnPullStatusChangeListener.PullStatus.CANCEL_REFRESH);
+            }
+            if (null != mPullUpListener) {
+                mPullUpListener.onPullChanged(IOnPullStatusChangeListener.PullStatus.CANCEL_REFRESH);
             }
         }
         return false;
