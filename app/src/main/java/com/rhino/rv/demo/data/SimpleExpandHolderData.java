@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview.data;
+package com.rhino.rv.demo.data;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.rhino.rv.swipe.BaseSwipeHolder;
 import com.rhino.rv.swipe.BaseSwipeHolderData;
-import com.rhino.librecyclerview.R;
+import com.rhino.rv.demo.R;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview.utils;
+package com.rhino.rv.demo.utils;
 
 import android.text.TextUtils;
 

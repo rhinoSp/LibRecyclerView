@@ -53,6 +53,7 @@ public abstract class BaseHolderData {
      */
     @LayoutRes
     public abstract int getLayoutRes();
+
     /**
      * Get the class name of ViewHolder.
      */
@@ -66,7 +67,7 @@ public abstract class BaseHolderData {
      * @return the span size.
      */
     public int getItemSpanSize(int spanCount) {
-        return mItemSpanSize > spanCount ? spanCount : mItemSpanSize;
+        return mItemSpanSize < 1 || mItemSpanSize > spanCount ? spanCount : mItemSpanSize;
     }
 
     /**

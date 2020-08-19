@@ -1,6 +1,7 @@
-package com.rhino.librecyclerview;
+package com.rhino.rv.demo;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,8 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.rhino.librecyclerview.data.SimpleExpandHolderData1;
-import com.rhino.librecyclerview.data.SingleTextData;
+import com.rhino.rv.demo.utils.ColorUtils;
+import com.rhino.rv.demo.utils.DrawableUtils;
 import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.decoration.SimpleItemDecoration;
 import com.rhino.rv.impl.IOnClickListener;
@@ -17,8 +18,9 @@ import com.rhino.rv.pull.PullRecyclerView;
 import com.rhino.rv.pull.PullRefreshLayout;
 import com.rhino.rv.swipe.BaseSwipeHolderData;
 import com.rhino.rv.swipe.SwipeListAdapter;
-import com.rhino.rv.tree.BaseTreeData;
-import com.rhino.librecyclerview.data.SimpleExpandHolderData;
+import com.rhino.rv.swipe.SwipeMenuItem;
+import com.rhino.rv.swipe.impl.IOnSwipeMenuItemClickListener;
+import com.rhino.rv.demo.data.SimpleExpandHolderData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +29,7 @@ import java.util.List;
  * @author LuoLin
  * @since Create on 2018/4/20.
  */
-public class SimpleExpandActivity extends AppCompatActivity {
+public class SwipeDeleteActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -36,12 +38,12 @@ public class SimpleExpandActivity extends AppCompatActivity {
     private SwipeListAdapter mSwipeListAdapter;
     private PullRefreshLayout mPullRefreshLayout;
 
-    private int mRootItemCount = 9;
+    private int mRootItemCount = 19;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.simple_expand_activity);
+        setContentView(R.layout.activity_main);
         initView();
     }
 
@@ -61,38 +63,37 @@ public class SimpleExpandActivity extends AppCompatActivity {
         mPullRecyclerView.addItemDecoration(new SimpleItemDecoration(getApplicationContext()));
 
         refreshList();
-
     }
 
     private void refreshList() {
         mBaseHolderDataList.clear();
         SimpleExpandHolderData root;
-        SimpleExpandHolderData child1;
-        SimpleExpandHolderData1 child2;
         for (int i = 0; i < mRootItemCount; i++) {
             root = new SimpleExpandHolderData();
             root.mItemSpanSize = GRID_SPAN_ITEM;
             root.mDesc = "item " + i;
+            root.mShowArrow = true;
+            root.mSwipeMenuItemClickListener = buildSwipeMenuItemClickListener();
 
-            root.setDepth(1);
-            List<BaseTreeData> childList1 = new ArrayList<>();
-            for (int j = 0; j < 4; j++) {
-                child1 = new SimpleExpandHolderData();
-                child1.mItemSpanSize = GRID_SPAN_ITEM;
-                child1.mDesc = "child " + i + " " + j;
-                child1.setDepth(2);
-                child1.mItemClickListener = buildItemClickListener();
-                childList1.add(child1);
-                List<BaseTreeData> childList2 = new ArrayList<>();
-                for (int k = 0; k < 5; k++) {
-                    child2 = new SimpleExpandHolderData1();
-                    child2.mDesc = "child " + i + " " + j + " " + k;
-                    child2.setDepth(3);
-                    childList2.add(child2);
-                }
-                child1.setChildList(childList2);
-            }
-            root.setChildList(childList1);
+            root.mSwipeMenuList = new ArrayList<>();
+            SwipeMenuItem item = new SwipeMenuItem();
+            item.setWidth(210);
+            item.setBackgroundDrawable(DrawableUtils.buildColorStateListDrawable(0, 0,
+                    ColorUtils.alphaColor(0.5f, Color.GRAY), Color.GRAY));
+            item.setIconWidth(90);
+            item.setIconHeight(90);
+            item.setText("edit");
+            root.mSwipeMenuList.add(item);
+
+            item = new SwipeMenuItem();
+            item.setWidth(210);
+            item.setBackgroundDrawable(DrawableUtils.buildColorStateListDrawable(0, 0,
+                    ColorUtils.alphaColor(0.5f, Color.RED), Color.RED));
+            item.setIconDrawable(getResources().getDrawable(R.mipmap.ic_launcher));
+            item.setIconColor(0);
+            item.setText("delete");
+            root.mSwipeMenuList.add(item);
+
             root.mItemClickListener = buildItemClickListener();
             mBaseHolderDataList.add(root);
         }
@@ -100,29 +101,29 @@ public class SimpleExpandActivity extends AppCompatActivity {
         mSwipeListAdapter.notifyDataSetChanged();
     }
 
-    public void expandAll(View v) {
-        mSwipeListAdapter.expandAll(false);
-    }
+    private IOnSwipeMenuItemClickListener<SimpleExpandHolderData> mSwipeMenuItemClickListener = null;
 
-    public void collapseAll(View v) {
-        mSwipeListAdapter.collapseAll(false);
+    private IOnSwipeMenuItemClickListener<SimpleExpandHolderData> buildSwipeMenuItemClickListener() {
+        if (null == mSwipeMenuItemClickListener) {
+            mSwipeMenuItemClickListener = new IOnSwipeMenuItemClickListener<SimpleExpandHolderData>() {
+                @Override
+                public void onItemClick(SimpleExpandHolderData data, int position, SwipeMenuItem item) {
+                    mSwipeListAdapter.closeAllSwipeMenu();
+                    showToast(data.mDesc + ", " + position + ", " + item.getText());
+                }
+            };
+        }
+        return mSwipeMenuItemClickListener;
     }
 
     private IOnClickListener<SimpleExpandHolderData> mItemClickListener = null;
+
     private IOnClickListener<SimpleExpandHolderData> buildItemClickListener() {
         if (null == mItemClickListener) {
             mItemClickListener = new IOnClickListener<SimpleExpandHolderData>() {
                 @Override
                 public void onClick(View v, SimpleExpandHolderData data, int position) {
-                    if (data.isLeaf()) {
-                        showToast(data.mDesc);
-                    } else {
-                        if (data.isExpanded()) {
-                            data.collapse(false);
-                        } else {
-                            data.expand(false);
-                        }
-                    }
+                    showToast(data.mDesc);
                 }
             };
         }
@@ -132,4 +133,5 @@ public class SimpleExpandActivity extends AppCompatActivity {
     protected void showToast(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
+
 }

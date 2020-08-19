@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview.data;
+package com.rhino.rv.demo.data;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -9,9 +9,9 @@ import android.widget.TextView;
 import com.rhino.rv.base.BaseHolder;
 import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.impl.IOnClickListener;
-import com.rhino.librecyclerview.R;
-import com.rhino.librecyclerview.utils.ColorUtils;
-import com.rhino.librecyclerview.utils.ScreenUtils;
+import com.rhino.rv.demo.R;
+import com.rhino.rv.demo.utils.ColorUtils;
+import com.rhino.rv.demo.utils.ScreenUtils;
 import com.rhino.rv.tree.BaseTreeData;
 
 import java.util.Random;

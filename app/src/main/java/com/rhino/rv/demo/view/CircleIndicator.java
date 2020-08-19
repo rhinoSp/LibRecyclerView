@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview.view;
+package com.rhino.rv.demo.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
-import com.rhino.librecyclerview.R;
+import com.rhino.rv.demo.R;
 
 
 /**

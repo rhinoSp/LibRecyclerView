@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview;
+package com.rhino.rv.demo;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,15 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 
-import com.rhino.librecyclerview.data.SingleTextData;
+import com.rhino.rv.demo.data.SingleTextData;
 import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.decoration.SimpleItemDecoration;
 import com.rhino.rv.pull.PullRecyclerView;
 import com.rhino.rv.pull.PullRefreshLayout;
-import com.rhino.librecyclerview.data.SingleButtonData;
-import com.rhino.librecyclerview.data.SingleEditData;
+import com.rhino.rv.demo.data.SingleButtonData;
+import com.rhino.rv.demo.data.SingleEditData;
 
 import java.util.ArrayList;
 import java.util.List;

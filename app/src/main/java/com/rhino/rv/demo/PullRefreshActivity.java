@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview;
+package com.rhino.rv.demo;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rhino.librecyclerview.data.SimpleExpandHolderData;
+import com.rhino.rv.demo.data.SimpleExpandHolderData;
 import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.decoration.SimpleItemDecoration;

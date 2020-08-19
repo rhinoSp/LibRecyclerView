@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview.data;
+package com.rhino.rv.demo.data;
 
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import com.rhino.rv.base.BaseHolder;
 import com.rhino.rv.base.BaseHolderData;
-import com.rhino.librecyclerview.R;
+import com.rhino.rv.demo.R;
 
 /**
  * @author LuoLin

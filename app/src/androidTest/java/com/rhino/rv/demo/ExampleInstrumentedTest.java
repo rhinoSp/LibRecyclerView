@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview;
+package com.rhino.rv.demo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.rhino.librecyclerview", appContext.getPackageName());
+        assertEquals("com.rhino.rv.demo", appContext.getPackageName());
     }
 }

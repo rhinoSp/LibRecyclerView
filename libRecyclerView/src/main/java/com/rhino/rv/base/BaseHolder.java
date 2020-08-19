@@ -51,7 +51,6 @@ public abstract class BaseHolder<T extends BaseHolderData> extends RecyclerView.
         this.mBindPosition = position;
         this.mData = data;
         this.mData.mHolder = this;
-        this.mBindPosition = position;
         itemView.setOnClickListener(getItemClickListener());
         itemView.setOnLongClickListener(getItemLongClickListener());
         bindView(data, position);

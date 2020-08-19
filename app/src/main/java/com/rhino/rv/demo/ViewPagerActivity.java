@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview;
+package com.rhino.rv.demo;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.decoration.GridItemDecoration;
 import com.rhino.rv.manager.GridLayoutManager;
 import com.rhino.rv.pager.PagerScrollHelper;
-import com.rhino.librecyclerview.data.SingleTextData;
-import com.rhino.librecyclerview.view.CircleIndicator;
+import com.rhino.rv.demo.data.SingleTextData;
+import com.rhino.rv.demo.view.CircleIndicator;
 
 import java.util.ArrayList;
 import java.util.List;

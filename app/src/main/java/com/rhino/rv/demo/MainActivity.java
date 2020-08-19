@@ -1,4 +1,4 @@
-package com.rhino.librecyclerview;
+package com.rhino.rv.demo;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,7 +13,7 @@ import com.rhino.rv.decoration.SimpleItemDecoration;
 import com.rhino.rv.impl.IOnClickListener;
 import com.rhino.rv.pull.PullRecyclerView;
 import com.rhino.rv.pull.PullRefreshLayout;
-import com.rhino.librecyclerview.data.SingleTextData;
+import com.rhino.rv.demo.data.SingleTextData;
 
 import java.util.ArrayList;
 import java.util.List;

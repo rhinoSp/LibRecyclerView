@@ -1,16 +1,24 @@
 apply plugin: 'com.android.library'
 
-android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+apply from: "aar.gradle"
 
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compile rootProject.ext.lib_appcompat
-    compile rootProject.ext.lib_RecyclerView
+    api rootProject.ext.dependencies["appcompat-v7"]
+    api rootProject.ext.dependencies["recyclerview"]
 }

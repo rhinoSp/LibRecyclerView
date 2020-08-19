@@ -28,6 +28,7 @@ import com.rhino.rv.pull.impl.IOnPullStatusChangeListener;
  *
  * &lt;/com.rhino.rl.pr.PullRefreshLayout&gt
  * </pre>
+ *
  * @author LuoLin
  * @since Create on 2017/4/13.
  */
