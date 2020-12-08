@@ -2,12 +2,17 @@ package com.rhino.rv.base;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 
+import com.rhino.rv.SimpleGridSpan;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author LuoLin
@@ -86,6 +91,7 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
     /**
      * Get the RecyclerView instance which started observing this adapter.
+     *
      * @return The RecyclerView instance which started observing this adapter.
      */
     public RecyclerView getAttachedRecyclerView() {
@@ -111,6 +117,49 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     }
 
     /**
+     * Get the max item span size.
+     *
+     * @return the max item span size.
+     */
+    public int getMaxItemSpanSize(List<BaseHolderData> mDataList) {
+        int spanSize = 1;
+        Set<Integer> set = new HashSet<>();
+        for (BaseHolderData data : mDataList) {
+            set.add(data.mItemSpanSizeScaleDenominator);
+        }
+        for (Integer integer : set) {
+            spanSize *= integer;
+        }
+        return spanSize;
+    }
+
+    /**
+     * Set GridLayoutManager space count.
+     *
+     * @param gridLayoutManager GridLayoutManager
+     */
+    public void setGridLayoutManagerSpanCount(List<BaseHolderData> mDataList, GridLayoutManager gridLayoutManager) {
+        int maxSpanSize = getMaxItemSpanSize(mDataList);
+        if (gridLayoutManager.getSpanCount() != maxSpanSize) {
+            gridLayoutManager.setSpanCount(maxSpanSize);
+            gridLayoutManager.setSpanSizeLookup(new SimpleGridSpan(this, maxSpanSize));
+        }
+    }
+
+    /**
+     * Set GridLayoutManager space count.
+     *
+     * @param gridLayoutManager GridLayoutManager
+     */
+    public void setGridLayoutManagerSpanCount(GridLayoutManager gridLayoutManager) {
+        int maxSpanSize = getMaxItemSpanSize(mDataList);
+        if (gridLayoutManager.getSpanCount() != maxSpanSize) {
+            gridLayoutManager.setSpanCount(maxSpanSize);
+            gridLayoutManager.setSpanSizeLookup(new SimpleGridSpan(this, maxSpanSize));
+        }
+    }
+
+    /**
      * Get the data list.
      *
      * @return list
@@ -121,21 +170,57 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     }
 
     /**
+     * Clear data list.
+     */
+    public void clearData() {
+        mDataList.clear();
+    }
+
+    /**
+     * Clear data list.
+     */
+    public void clearDataAndNotify() {
+        clearData();
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Add data.
+     *
+     * @param dataList list
+     */
+    public void addData(@NonNull List<? extends BaseHolderData> dataList) {
+        mDataList.addAll(dataList);
+    }
+
+    /**
+     * Add data and Notify data changed.
+     *
+     * @param dataList list
+     */
+    public void addDataAndNotify(@NonNull List<? extends BaseHolderData> dataList) {
+        int count = getItemCount();
+        addData(dataList);
+        notifyItemRangeInserted(count - 1, dataList.size());
+    }
+
+    /**
      * Update the data.
      *
      * @param dataList list
      */
     public void updateData(@NonNull List<? extends BaseHolderData> dataList) {
-        this.mDataList.clear();
-        this.mDataList.addAll(dataList);
+        mDataList.clear();
+        mDataList.addAll(dataList);
     }
 
     /**
      * Update the data and Notify data changed.
+     *
      * @param dataList list
      */
     public void updateDataAndNotify(@NonNull List<? extends BaseHolderData> dataList) {
         updateData(dataList);
-	    notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 }

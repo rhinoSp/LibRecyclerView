@@ -26,12 +26,9 @@ import java.util.List;
  */
 public class MixItemActivity extends AppCompatActivity {
 
-    private static final int GRID_SPAN_ITEM = 15;
-    private static final int GRID_SPAN_ITEM_1IN3 = 5;
-    private static final int GRID_SPAN_ITEM_1IN5 = 3;
     private List<BaseHolderData> mBaseHolderDataList = new ArrayList<>();
     private SimpleRecyclerAdapter mSimpleRecyclerAdapter;
-
+    private GridLayoutManager mGridLayoutManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,10 +45,10 @@ public class MixItemActivity extends AppCompatActivity {
         mSimpleRecyclerAdapter = new SimpleRecyclerAdapter();
         mPullRecyclerView.setAdapter(mSimpleRecyclerAdapter);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), GRID_SPAN_ITEM);
-        gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        gridLayoutManager.setSpanSizeLookup(new SimpleGridSpan(mSimpleRecyclerAdapter, GRID_SPAN_ITEM));
-        mPullRecyclerView.setLayoutManager(gridLayoutManager);
+        mGridLayoutManager = new GridLayoutManager(getApplicationContext(), -1);
+        mGridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mGridLayoutManager.setSpanSizeLookup(new SimpleGridSpan(mSimpleRecyclerAdapter, -1));
+        mPullRecyclerView.setLayoutManager(mGridLayoutManager);
         mPullRecyclerView.addItemDecoration(new SimpleItemDecoration(getApplicationContext()));
 
         refreshList();
@@ -61,6 +58,11 @@ public class MixItemActivity extends AppCompatActivity {
 
         mBaseHolderDataList.add(buildTextData());
 
+        mBaseHolderDataList.add(buildTextData1IN2());
+        mBaseHolderDataList.add(buildTextData1IN2());
+
+        mBaseHolderDataList.add(buildTextData());
+
         mBaseHolderDataList.add(buildTextData1IN3());
         mBaseHolderDataList.add(buildTextData1IN3());
         mBaseHolderDataList.add(buildTextData1IN3());
@@ -84,6 +86,19 @@ public class MixItemActivity extends AppCompatActivity {
         mBaseHolderDataList.add(buildTextData1IN5());
 
         mBaseHolderDataList.add(buildTextData());
+
+        mBaseHolderDataList.add(buildTextData3IN5());
+        mBaseHolderDataList.add(buildTextData3IN5());
+
+        mBaseHolderDataList.add(buildTextData());
+
+        mBaseHolderDataList.add(buildTextData1IN7());
+        mBaseHolderDataList.add(buildTextData1IN7());
+        mBaseHolderDataList.add(buildTextData1IN7());
+        mBaseHolderDataList.add(buildTextData1IN7());
+        mBaseHolderDataList.add(buildTextData1IN7());
+        mBaseHolderDataList.add(buildTextData1IN7());
+        mBaseHolderDataList.add(buildTextData1IN7());
 
         mBaseHolderDataList.add(buildEditData());
         mBaseHolderDataList.add(buildEditData());
@@ -91,43 +106,59 @@ public class MixItemActivity extends AppCompatActivity {
 
         mBaseHolderDataList.add(buildButtonData());
 
-        mSimpleRecyclerAdapter.updateData(mBaseHolderDataList);
-        mSimpleRecyclerAdapter.notifyDataSetChanged();
+        mSimpleRecyclerAdapter.setGridLayoutManagerSpanCount(mBaseHolderDataList, mGridLayoutManager);
+        mSimpleRecyclerAdapter.updateDataAndNotify(mBaseHolderDataList);
     }
 
     private SingleTextData buildTextData() {
         SingleTextData data = new SingleTextData();
-        data.mDesc = "铺满";
-        data.mItemSpanSize = GRID_SPAN_ITEM;
+        data.mItemSpanSize = -1;
+        return data;
+    }
+
+    private SingleTextData buildTextData1IN2() {
+        SingleTextData data = new SingleTextData();
+        data.mItemSpanSizeScaleDenominator = 2;
         return data;
     }
 
     private SingleTextData buildTextData1IN3() {
         SingleTextData data = new SingleTextData();
-        data.mDesc = "三分之一";
-        data.mItemSpanSize = GRID_SPAN_ITEM_1IN3;
+        data.mItemSpanSizeScaleDenominator = 3;
         return data;
     }
 
     private SingleTextData buildTextData1IN5() {
         SingleTextData data = new SingleTextData();
-        data.mDesc = "五分之一";
-        data.mItemSpanSize = GRID_SPAN_ITEM_1IN5;
+        data.mItemSpanSizeScaleDenominator = 5;
+        return data;
+    }
+
+    private SingleTextData buildTextData3IN5() {
+        SingleTextData data = new SingleTextData();
+        data.mItemSpanSizeScaleNumerator = 3;
+        data.mItemSpanSizeScaleDenominator = 5;
+        return data;
+    }
+
+    private SingleTextData buildTextData1IN7() {
+        SingleTextData data = new SingleTextData();
+        data.mItemSpanSizeScaleNumerator = 1;
+        data.mItemSpanSizeScaleDenominator = 7;
         return data;
     }
 
     private SingleEditData buildEditData() {
         SingleEditData data = new SingleEditData();
-        data.mItemSpanSize = GRID_SPAN_ITEM;
+        data.mItemSpanSize = -1;
         return data;
     }
 
     private SingleButtonData buildButtonData() {
         SingleButtonData data = new SingleButtonData();
-        data.mItemSpanSize = GRID_SPAN_ITEM;
+        data.mItemSpanSize = -1;
         return data;
     }
-
 
 
 }

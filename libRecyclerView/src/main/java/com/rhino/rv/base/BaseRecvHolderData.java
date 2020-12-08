@@ -17,4 +17,8 @@ public abstract class BaseRecvHolderData<T extends ViewDataBinding> extends Base
         return BaseRecvHolder.class.getName();
     }
 
+    public void unbindView() {
+
+    }
+
 }

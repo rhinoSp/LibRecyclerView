@@ -22,33 +22,36 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
     protected static final int DF_LINE_COLOR = 0x22000000;
     protected static final int DF_LINE_WIDTH = 1;
     protected int mLineWidth;
+    protected int mHorizontalLineWidth;
+    protected int mVerticalLineWidth;
     protected float mHorizontalLineLengthScale;
     protected float mVerticalLineLengthScale;
     protected Paint mPaint;
     protected Path mPath;
 
     public SimpleItemDecoration(Context context) {
-        this(context, DF_LINE_COLOR, DF_LINE_WIDTH);
+        this(context, DF_LINE_COLOR, (int) (context.getResources().getDisplayMetrics().density * DF_LINE_WIDTH));
     }
 
     public SimpleItemDecoration(Context context, int lineColor, int lineWidth) {
         this.mHorizontalLineLengthScale = 1.0f;
         this.mVerticalLineLengthScale = 1.0f;
-        this.mLineWidth = (int) (context.getResources().getDisplayMetrics().density * lineWidth);
+        this.mLineWidth = lineWidth;
+        this.mHorizontalLineWidth = mLineWidth;
+        this.mVerticalLineWidth = mLineWidth;
         this.mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         this.mPaint.setStyle(Paint.Style.STROKE);
         this.mPaint.setColor(lineColor);
-        this.mPaint.setStrokeWidth(mLineWidth);
         this.mPath = new Path();
     }
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         RecyclerView.ViewHolder viewHolder = parent.getChildViewHolder(view);
-        if (viewHolder instanceof BaseHolder && !((BaseHolder)viewHolder).getBindData().mDecorationEnable) {
+        if (viewHolder instanceof BaseHolder && !((BaseHolder) viewHolder).getBindData().mDecorationEnable) {
             return;
         }
-        outRect.set(mLineWidth / 2, mLineWidth / 2, mLineWidth / 2, mLineWidth / 2);
+        outRect.set(mVerticalLineWidth / 2, mHorizontalLineWidth / 2, mVerticalLineWidth / 2, mHorizontalLineWidth / 2);
     }
 
     @Override
@@ -61,7 +64,7 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
                 continue;
             }
             RecyclerView.ViewHolder viewHolder = parent.getChildViewHolder(child);
-            if (viewHolder instanceof BaseHolder && !((BaseHolder)viewHolder).getBindData().mDecorationEnable) {
+            if (viewHolder instanceof BaseHolder && !((BaseHolder) viewHolder).getBindData().mDecorationEnable) {
                 continue;
             }
             int childLeft = child.getLeft();
@@ -73,6 +76,7 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
                 mPath.reset();
                 mPath.moveTo(childRight + mLineWidth / 2, childTop + margin);
                 mPath.lineTo(childRight + mLineWidth / 2, childBottom - margin);
+                mPaint.setStrokeWidth(mVerticalLineWidth);
                 c.drawPath(mPath, mPaint);
             }
             if (DEVIATION < relParentHeight - childBottom - mLineWidth / 2) {
@@ -81,6 +85,7 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
                 mPath.reset();
                 mPath.moveTo(childLeft + margin, childBottom + mLineWidth / 2);
                 mPath.lineTo(childRight - margin, childBottom + mLineWidth / 2);
+                mPaint.setStrokeWidth(mHorizontalLineWidth);
                 c.drawPath(mPath, mPaint);
             }
         }
@@ -118,11 +123,30 @@ public class SimpleItemDecoration extends RecyclerView.ItemDecoration {
     /**
      * Set the line width.
      *
-     * @param width the line width.(dp)
+     * @param width the line width.(px)
      */
     public void setLineWidth(int width) {
         this.mLineWidth = width;
-        this.mPaint.setStrokeWidth(mLineWidth);
+        this.mHorizontalLineWidth = width;
+        this.mVerticalLineWidth = width;
+    }
+
+    /**
+     * Set the horizontal line width.
+     *
+     * @param width the horizontal line width.(px)
+     */
+    public void setHorizontalLineWidth(int width) {
+        this.mHorizontalLineWidth = width;
+    }
+
+    /**
+     * Set the vertical line width.
+     *
+     * @param width the vertical line width.(px)
+     */
+    public void setVerticalLineWidth(int width) {
+        this.mVerticalLineWidth = width;
     }
 
     /**

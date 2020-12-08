@@ -2,16 +2,16 @@ package com.rhino.rv.demo.data;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.rhino.rv.base.BaseHolder;
-import com.rhino.rv.base.BaseHolderData;
-import com.rhino.rv.impl.IOnClickListener;
 import com.rhino.rv.demo.R;
 import com.rhino.rv.demo.utils.ColorUtils;
 import com.rhino.rv.demo.utils.ScreenUtils;
+import com.rhino.rv.impl.IOnClickListener;
 import com.rhino.rv.tree.BaseTreeData;
 
 import java.util.Random;
@@ -53,7 +53,11 @@ public class SingleTextData extends BaseTreeData {
             if(0 != data.mDescColor){
                 mTvDesc.setTextColor(data.mDescColor);
             }
-            mTvDesc.setText(data.mDesc);
+            if (TextUtils.isEmpty(data.mDesc)) {
+                mTvDesc.setText(data.mItemSpanSizeScaleNumerator + "/" + data.mItemSpanSizeScaleDenominator);
+            } else {
+                mTvDesc.setText(data.mDesc);
+            }
             if(data.mRandom){
                 mTvDesc.setBackgroundColor(ColorUtils.TRANSPARENT);
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mTvDesc.getLayoutParams();

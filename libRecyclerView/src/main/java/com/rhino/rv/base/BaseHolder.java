@@ -40,6 +40,12 @@ public abstract class BaseHolder<T extends BaseHolderData> extends RecyclerView.
      **/
     public abstract void bindView(T data, int position);
 
+    /**
+     * Unbind view.
+     **/
+    public void unbindView(T data) {
+    }
+
     public BaseHolder(View itemView) {
         super(itemView);
     }
@@ -61,6 +67,7 @@ public abstract class BaseHolder<T extends BaseHolderData> extends RecyclerView.
      */
     public void onUnbindView() {
         mBindPosition = RecyclerView.NO_POSITION;
+        unbindView(mData);
     }
 
     /**

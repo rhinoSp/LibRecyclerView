@@ -51,7 +51,7 @@ dependencies {
     api rootProject.ext.dependencies["appcompat-v7"]
     api rootProject.ext.dependencies["recyclerview"]
 
-//    api project(path: ':libRecyclerView')
-    implementation(name: 'com.rhino.rv-libRecyclerView-v1.0.9', ext: 'aar')
+    api project(path: ':libRecyclerView')
+//    implementation(name: 'com.rhino.rv-libRecyclerView-v1.0.9', ext: 'aar')
 
 }

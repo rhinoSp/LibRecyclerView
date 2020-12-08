@@ -15,7 +15,16 @@ public class BaseRecvHolder extends BaseHolder<BaseRecvHolderData> {
 
     @Override
     public void bindView(BaseRecvHolderData data, int position) {
-        data.bindView(DataBindingUtil.bind(itemView), position);
+        if (data != null) {
+            data.bindView(DataBindingUtil.bind(itemView), position);
+        }
+    }
+
+    @Override
+    public void unbindView(BaseRecvHolderData data) {
+        if (data != null) {
+            data.unbindView();
+        }
     }
 
 }

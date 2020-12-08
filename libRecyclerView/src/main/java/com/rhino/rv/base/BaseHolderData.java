@@ -24,6 +24,14 @@ public abstract class BaseHolderData {
      */
     public int mItemSpanSize = DEF_ITEM_SPAN;
     /**
+     * The item span size scale of numerator.
+     */
+    public int mItemSpanSizeScaleNumerator = 1;
+    /**
+     * The item span size scale of denominator.
+     */
+    public int mItemSpanSizeScaleDenominator = 1;
+    /**
      * The extra data.
      */
     public Object mExtraData;
@@ -67,7 +75,13 @@ public abstract class BaseHolderData {
      * @return the span size.
      */
     public int getItemSpanSize(int spanCount) {
-        return mItemSpanSize < 1 || mItemSpanSize > spanCount ? spanCount : mItemSpanSize;
+        if (mItemSpanSizeScaleNumerator != 1 || mItemSpanSizeScaleDenominator != 1) {
+            mItemSpanSize = spanCount / mItemSpanSizeScaleDenominator * mItemSpanSizeScaleNumerator;
+        }
+        if (mItemSpanSize <= 0 || mItemSpanSize >= spanCount) {
+            mItemSpanSize = spanCount;
+        }
+        return mItemSpanSize;
     }
 
     /**
