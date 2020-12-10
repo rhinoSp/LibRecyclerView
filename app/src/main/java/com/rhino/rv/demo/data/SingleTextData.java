@@ -35,8 +35,8 @@ public class SingleTextData extends BaseTreeData {
 
     @NonNull
     @Override
-    public String getHolderClassName() {
-        return SingleTextDataHolder.class.getName();
+    public Class getHolderClass() {
+        return SingleTextDataHolder.class;
     }
 
     public static class SingleTextDataHolder extends BaseHolder<SingleTextData> {

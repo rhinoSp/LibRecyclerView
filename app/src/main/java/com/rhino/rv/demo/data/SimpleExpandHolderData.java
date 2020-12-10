@@ -30,8 +30,8 @@ public class SimpleExpandHolderData extends BaseSwipeHolderData {
 
     @NonNull
     @Override
-    public String getHolderClassName() {
-        return SimpleExpandHolder.class.getName();
+    public Class getHolderClass() {
+        return SimpleExpandHolder.class;
     }
 
     public static class SimpleExpandHolder extends BaseSwipeHolder<SimpleExpandHolderData> {

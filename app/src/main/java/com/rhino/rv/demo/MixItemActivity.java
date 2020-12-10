@@ -1,6 +1,7 @@
 package com.rhino.rv.demo;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,8 @@ import com.rhino.rv.pull.PullRecyclerView;
 import com.rhino.rv.pull.PullRefreshLayout;
 import com.rhino.rv.demo.data.SingleButtonData;
 import com.rhino.rv.demo.data.SingleEditData;
+import com.rhino.rv.recvitem.RecvItemEmptyContent;
+import com.rhino.rv.recvitem.RecvItemEmptySpace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +102,10 @@ public class MixItemActivity extends AppCompatActivity {
         mBaseHolderDataList.add(buildTextData1IN7());
         mBaseHolderDataList.add(buildTextData1IN7());
         mBaseHolderDataList.add(buildTextData1IN7());
+
+        mBaseHolderDataList.add(RecvItemEmptySpace.buildEmptySpace(40, new ColorDrawable(0xff333333)));
+        mBaseHolderDataList.add(RecvItemEmptyContent.buildEmptyContent(findViewById(R.id.PullRecyclerView)));
+        mBaseHolderDataList.add(RecvItemEmptySpace.buildEmptySpace(40, new ColorDrawable(0xffff3333)));
 
         mBaseHolderDataList.add(buildEditData());
         mBaseHolderDataList.add(buildEditData());

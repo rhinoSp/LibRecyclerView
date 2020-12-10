@@ -22,8 +22,8 @@ public class SingleEditData extends BaseHolderData {
 
     @NonNull
     @Override
-    public String getHolderClassName() {
-        return SingleEditDataHolder.class.getName();
+    public Class getHolderClass() {
+        return SingleEditDataHolder.class;
     }
 
     public static class SingleEditDataHolder extends BaseHolder<SingleEditData> {

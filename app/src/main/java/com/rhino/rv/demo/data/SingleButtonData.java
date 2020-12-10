@@ -22,8 +22,8 @@ public class SingleButtonData extends BaseHolderData {
 
     @NonNull
     @Override
-    public String getHolderClassName() {
-        return SingleButtonDataHolder.class.getName();
+    public Class getHolderClass() {
+        return SingleButtonDataHolder.class;
     }
 
     public static class SingleButtonDataHolder extends BaseHolder<SingleButtonData> {

@@ -16,14 +16,11 @@ import java.lang.reflect.InvocationTargetException;
 public class SimpleHolderFactory extends BaseHolderFactory {
     @SuppressWarnings("all")
     @Override
-    public BaseHolder buildHolder(ViewGroup parent, int layoutResId, String holderClassName) {
+    public BaseHolder buildHolder(ViewGroup parent, int layoutResId, Class holderClass) {
         View view = LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false);
         BaseHolder holder = null;
         try {
-            Class clazz = Class.forName(holderClassName);
-            holder = (BaseHolder) clazz.getConstructor(View.class).newInstance(view);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            holder = (BaseHolder) holderClass.getConstructor(View.class).newInstance(view);
         } catch (InstantiationException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

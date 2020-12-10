@@ -7,5 +7,5 @@ import android.view.ViewGroup;
  * @since Create on 2016/11/21.
  */
 public abstract class BaseHolderFactory {
-    abstract public BaseHolder buildHolder(ViewGroup parent, int layoutResId, String holderClassName);
+    abstract public BaseHolder buildHolder(ViewGroup parent, int layoutResId, Class holderClass);
 }

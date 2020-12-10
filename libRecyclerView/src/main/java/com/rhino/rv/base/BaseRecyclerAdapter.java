@@ -42,17 +42,17 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
 
     @Override
     public BaseHolder onCreateViewHolder(ViewGroup parent, int layoutResId) {
-        String holderClassName = "";
+        Class holderClass = null;
         for (BaseHolderData data : mDataList) {
             if (data.getLayoutRes() == layoutResId) {
-                holderClassName = data.getHolderClassName();
+                holderClass = data.getHolderClass();
                 break;
             }
         }
-        if (TextUtils.isEmpty(holderClassName)) {
-            throw new RuntimeException("The holder class name is null!");
+        if (holderClass == null) {
+            throw new RuntimeException("The holder class is null!");
         }
-        BaseHolder holder = mHolderFactory.buildHolder(parent, layoutResId, holderClassName);
+        BaseHolder holder = mHolderFactory.buildHolder(parent, layoutResId, holderClass);
         holder.setAdapter(this);
         holder.setParentView(parent);
         return holder;

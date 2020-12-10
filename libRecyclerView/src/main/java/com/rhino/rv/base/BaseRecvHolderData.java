@@ -13,8 +13,8 @@ public abstract class BaseRecvHolderData<T extends ViewDataBinding> extends Base
 
     @NonNull
     @Override
-    public String getHolderClassName() {
-        return BaseRecvHolder.class.getName();
+    public Class getHolderClass() {
+        return BaseRecvHolder.class;
     }
 
     public void unbindView() {

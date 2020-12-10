@@ -66,7 +66,7 @@ public abstract class BaseHolderData {
      * Get the class name of ViewHolder.
      */
     @NonNull
-    public abstract String getHolderClassName();
+    public abstract Class getHolderClass();
 
     /**
      * Get the span size.
