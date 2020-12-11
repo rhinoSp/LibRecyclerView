@@ -10,7 +10,7 @@ ext.aarOutPutDir = "${rootDir}/repositories"
 ext.aarPackageName = "com.rhino.rv"
 ext.aarArtifactId = "libRecyclerView"
 ext.aarVersionName = "1.9"
-ext.aarVersionCode = 1
+ext.aarVersionCode = 2
 
 afterEvaluate {
     project.tasks.findAll {
