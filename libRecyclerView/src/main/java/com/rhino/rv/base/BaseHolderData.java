@@ -1,13 +1,14 @@
 package com.rhino.rv.base;
 
 
+import android.content.Context;
+
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
+
 import com.rhino.rv.impl.IOnClickListener;
 import com.rhino.rv.impl.IOnLongClickListener;
-
-import android.content.Context;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.helper.ItemTouchHelper;
 
 
 /**

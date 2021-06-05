@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.RelativeLayout;
 
-import com.rhino.rv.pull.impl.IPull;
 import com.rhino.rv.pull.impl.IOnPullStatusChangeListener;
+import com.rhino.rv.pull.impl.IPull;
 
 /**
  * Subclass of {@link RelativeLayout} that supports swipe.

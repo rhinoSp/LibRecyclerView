@@ -6,17 +6,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.ColorInt;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.ColorInt;
 
 import com.rhino.rv.demo.R;
 
 
 /**
  * <p>The custom indicator for page.</p>
- *Follow this example:
+ * Follow this example:
  *
  * <pre class="prettyprint">
  * &lt;?xml version="1.0" encoding="utf-8"?&gt</br>
@@ -40,8 +41,9 @@ import com.rhino.rv.demo.R;
  *          app:ci_normalColor="#444444"
  *          app:ci_selectedColor="#ffe6454a"/&gt
  *
- *&lt;/RelativeLayout&gt
- *</pre>
+ * &lt;/RelativeLayout&gt
+ * </pre>
+ *
  * @author LuoLin
  * @since Create on 2018/1/8.
  */
@@ -72,6 +74,7 @@ public class CircleIndicator extends View {
         OUTSIDE,
         SOLO
     }
+
     public enum Orientation {
         HORIZONTAL,
         VERTICAL
@@ -131,13 +134,14 @@ public class CircleIndicator extends View {
 
     /**
      * Do something init.
+     *
      * @param context Context
-     * @param attrs AttributeSet
+     * @param attrs   AttributeSet
      */
-    private void init(Context context, AttributeSet attrs){
+    private void init(Context context, AttributeSet attrs) {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPath = new Path();
-        if(attrs == null) {
+        if (attrs == null) {
             return;
         }
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleIndicator);
@@ -157,6 +161,7 @@ public class CircleIndicator extends View {
 
     /**
      * Draw the all indicator.
+     *
      * @param canvas canvas
      */
     private void drawIndicators(Canvas canvas) {
@@ -176,6 +181,7 @@ public class CircleIndicator extends View {
 
     /**
      * Draw the select indicator.
+     *
      * @param canvas canvas
      */
     private void drawSelectIndicator(Canvas canvas) {
@@ -209,24 +215,26 @@ public class CircleIndicator extends View {
 
     /**
      * Calculate the position indicator x.
+     *
      * @param position The position of page.
      * @return x
      */
     private float calculateIndicatorX(int position) {
         float indicatorRealWidth = mCount * mRadius * 2
-                + (mCount-1) * mMargin;
+                + (mCount - 1) * mMargin;
         float margin = position * mMargin + position * mRadius * 2;
         return mViewWidth / 2 - indicatorRealWidth / 2 + mRadius + margin;
     }
 
     /**
      * Calculate the position indicator y.
+     *
      * @param position The position of page.
      * @return x
      */
     private float calculateIndicatorY(int position) {
         float indicatorRealHeight = mCount * mRadius * 2
-                + (mCount-1) * mMargin;
+                + (mCount - 1) * mMargin;
         float margin = position * mMargin + position * mRadius * 2;
         return mViewHeight / 2 - indicatorRealHeight / 2 + mRadius + margin;
     }
@@ -258,7 +266,7 @@ public class CircleIndicator extends View {
      * This method will be invoked when the current page is scrolled, either as part
      * of a programmatically initiated smooth scroll or a user initiated touch scroll.
      *
-     * @param position The position of next page that will be show.
+     * @param position       The position of next page that will be show.
      * @param positionOffset Value from [0, 1) indicating the offset from the page at position.
      * @see Mode#INSIDE
      * @see Mode#OUTSIDE
@@ -314,6 +322,7 @@ public class CircleIndicator extends View {
 
     /**
      * Set the mode of indicator.
+     *
      * @param mode The new mode of indicator.
      * @see Mode#INSIDE
      * @see Mode#OUTSIDE
@@ -328,6 +337,7 @@ public class CircleIndicator extends View {
 
     /**
      * Set the count of indicator.
+     *
      * @param count The count of indicator.
      */
     public void setCount(int count) {
@@ -342,6 +352,7 @@ public class CircleIndicator extends View {
 
     /**
      * Set the radius of indicator.
+     *
      * @param radius The radius of indicator.
      */
     public void setRadius(float radius) {
@@ -353,6 +364,7 @@ public class CircleIndicator extends View {
 
     /**
      * Set the margin between tow indicator.
+     *
      * @param margin The margin between tow indicator.
      */
     public void setMargin(float margin) {
@@ -364,6 +376,7 @@ public class CircleIndicator extends View {
 
     /**
      * Set the color of normal indicator.
+     *
      * @param normalColor The color of normal indicator.
      */
     public void setNormalColor(@ColorInt int normalColor) {
@@ -375,6 +388,7 @@ public class CircleIndicator extends View {
 
     /**
      * Set the color of selected indicator.
+     *
      * @param selectedColor The color of selected indicator.
      */
     public void setSelectedColor(@ColorInt int selectedColor) {

@@ -3,17 +3,18 @@ package com.rhino.rv.demo;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.decoration.SimpleItemDecoration;
+import com.rhino.rv.demo.data.SingleTextData;
 import com.rhino.rv.impl.IOnClickListener;
 import com.rhino.rv.pull.PullRecyclerView;
 import com.rhino.rv.pull.PullRefreshLayout;
-import com.rhino.rv.demo.data.SingleTextData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,15 +64,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private SingleTextData buildItemData(String desc, Class<?> activityCls){
+    private SingleTextData buildItemData(String desc, Class<?> activityCls) {
         return buildItemData(desc, activityCls, null);
     }
 
-    private SingleTextData buildItemData(String desc, IOnClickListener<SingleTextData> onClickListener){
+    private SingleTextData buildItemData(String desc, IOnClickListener<SingleTextData> onClickListener) {
         return buildItemData(desc, null, onClickListener);
     }
 
-    private SingleTextData buildItemData(String desc, Class<?> activityCls, IOnClickListener<SingleTextData> onClickListener){
+    private SingleTextData buildItemData(String desc, Class<?> activityCls, IOnClickListener<SingleTextData> onClickListener) {
         SingleTextData data = new SingleTextData();
         data.mRandom = false;
         data.mDesc = desc;
@@ -82,14 +83,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private IOnClickListener<SingleTextData> mIOnClickListener;
-    private IOnClickListener<SingleTextData> buildItemNormalClickListener(){
-        if(null == mIOnClickListener){
+
+    private IOnClickListener<SingleTextData> buildItemNormalClickListener() {
+        if (null == mIOnClickListener) {
             mIOnClickListener = new IOnClickListener<SingleTextData>() {
                 @Override
                 public void onClick(View v, SingleTextData data, int position) {
-                    if(null != data.mOnClickListener){
+                    if (null != data.mOnClickListener) {
                         data.mOnClickListener.onClick(v, data, position);
-                    } else if(null != data.mActivityCls){
+                    } else if (null != data.mActivityCls) {
                         showActivityPage(data.mActivityCls, data.mDesc);
                     }
                 }
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         return mIOnClickListener;
     }
 
-    private void showActivityPage(Class<?> cls, String title){
+    private void showActivityPage(Class<?> cls, String title) {
         Intent intent = new Intent(getApplicationContext(), cls);
         intent.putExtra("title", title);
         startActivity(intent);

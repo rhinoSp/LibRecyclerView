@@ -2,7 +2,8 @@ package com.rhino.rv.decoration;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * @author LuoLin
@@ -21,15 +22,15 @@ public class GridItemDecoration extends SimpleItemDecoration {
     public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
         int relWidth = getContainerUsableWidth(parent);
         int relHeight = getContainerUsableHeight(parent);
-        float rowGrid = (float)relHeight / mRowCount;
-        float columnGrid = (float)relWidth / mColumnCount;
+        float rowGrid = (float) relHeight / mRowCount;
+        float columnGrid = (float) relWidth / mColumnCount;
         for (int i = 0, L = mRowCount * mColumnCount; i < L; i++) {
             float childLeft = i % mColumnCount * columnGrid;
             float childRight = childLeft + columnGrid;
             float childTop = i / mColumnCount * rowGrid;
             float childBottom = childTop + rowGrid;
 
-            if(DEVIATION < relWidth - childRight){
+            if (DEVIATION < relWidth - childRight) {
                 float margin = (1 - mVerticalLineLengthScale) * rowGrid / 2;
                 mPath.reset();
                 mPath.moveTo(childRight, childTop + margin);
@@ -37,7 +38,7 @@ public class GridItemDecoration extends SimpleItemDecoration {
                 c.drawPath(mPath, mPaint);
             }
 
-            if(DEVIATION < relHeight - childBottom){
+            if (DEVIATION < relHeight - childBottom) {
                 float margin = (1 - mHorizontalLineLengthScale) * columnGrid / 2;
                 margin = 0 == margin ? mLineWidth / 2 : margin;
                 mPath.reset();
@@ -50,6 +51,7 @@ public class GridItemDecoration extends SimpleItemDecoration {
 
     /**
      * Set the number of column count.
+     *
      * @param columnCount the number of column count.
      */
     public void setColumnCount(int columnCount) {
@@ -58,6 +60,7 @@ public class GridItemDecoration extends SimpleItemDecoration {
 
     /**
      * Set the number of row count.
+     *
      * @param rowCount the number of row count.
      */
     public void setRowCount(int rowCount) {

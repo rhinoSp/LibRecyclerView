@@ -1,8 +1,8 @@
 package com.rhino.rv.swipe;
 
-import com.rhino.rv.tree.BaseTreeData;
-import com.rhino.rv.swipe.impl.IOnSwipeMenuItemClickListener;
 import com.rhino.rv.swipe.impl.IOnSwipeChangeListener;
+import com.rhino.rv.swipe.impl.IOnSwipeMenuItemClickListener;
+import com.rhino.rv.tree.BaseTreeData;
 
 import java.util.List;
 

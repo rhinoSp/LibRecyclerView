@@ -1,8 +1,9 @@
 package com.rhino.rv.demo.data;
 
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
 
 import com.rhino.rv.base.BaseHolder;
 import com.rhino.rv.base.BaseHolderData;

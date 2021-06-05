@@ -1,18 +1,19 @@
 package com.rhino.rv.demo;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Toast;
 
-import com.rhino.rv.demo.utils.ColorUtils;
-import com.rhino.rv.demo.utils.DrawableUtils;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.decoration.SimpleItemDecoration;
+import com.rhino.rv.demo.data.SimpleExpandHolderData;
+import com.rhino.rv.demo.utils.ColorUtils;
+import com.rhino.rv.demo.utils.DrawableUtils;
 import com.rhino.rv.impl.IOnClickListener;
 import com.rhino.rv.pull.PullRecyclerView;
 import com.rhino.rv.pull.PullRefreshLayout;
@@ -20,7 +21,6 @@ import com.rhino.rv.swipe.BaseSwipeHolderData;
 import com.rhino.rv.swipe.SwipeListAdapter;
 import com.rhino.rv.swipe.SwipeMenuItem;
 import com.rhino.rv.swipe.impl.IOnSwipeMenuItemClickListener;
-import com.rhino.rv.demo.data.SimpleExpandHolderData;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.rhino.rv.drag;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.drag.impl.IOnItemDragCallbackListener;
@@ -77,7 +77,7 @@ public class DragRecyclerAdapter extends SwipeListAdapter implements IOnItemDrag
         notifyItemMoved(srcPosition, targetPosition);
         return true;
     }
-    
+
     public void setLongPressDragEnabled(boolean enable) {
         mItemTouchCallback.setLongPressDragEnabled(enable);
     }

@@ -1,9 +1,9 @@
 package com.rhino.rv.tree;
 
-import java.util.List;
-
 import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.base.BaseHolderFactory;
+
+import java.util.List;
 
 /**
  * @author LuoLin

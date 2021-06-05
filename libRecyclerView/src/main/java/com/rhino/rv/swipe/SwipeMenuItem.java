@@ -5,8 +5,9 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
 import android.widget.LinearLayout;
+
+import androidx.annotation.ColorInt;
 
 import com.rhino.rv.swipe.impl.IOnSwipeMenuItemClickListener;
 

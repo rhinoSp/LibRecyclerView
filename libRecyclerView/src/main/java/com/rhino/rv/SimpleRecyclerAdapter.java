@@ -1,6 +1,6 @@
 package com.rhino.rv;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.rhino.rv.base.BaseHolderFactory;
 import com.rhino.rv.base.BaseRecyclerAdapter;

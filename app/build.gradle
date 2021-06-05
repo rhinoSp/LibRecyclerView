@@ -2,15 +2,16 @@ apply plugin: 'com.android.application'
 apply from: "pkg.gradle"
 
 android {
-    compileSdkVersion rootProject.android.compileSdkVersion
+    compileSdkVersion pkgCompileSdkVersion
     defaultConfig {
-        minSdkVersion rootProject.android.minSdkVersion
-        targetSdkVersion rootProject.android.targetSdkVersion
+        minSdkVersion pkgMinSdkVersion
+        targetSdkVersion pkgTargetSdkVersion
+
+        applicationId apkApplicationId
         versionCode apkVersionCode
         versionName apkVersionName
-        applicationId "com.rhino.rv.demo"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     signingConfigs {
         keystore {
@@ -48,10 +49,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api rootProject.ext.dependencies["appcompat-v7"]
-    api rootProject.ext.dependencies["recyclerview"]
+    implementation rootProject.ext.appcompat
+    implementation rootProject.ext.material
+    implementation rootProject.ext.constraintlayout
+    implementation rootProject.ext.recyclerview
 
     api project(path: ':libRecyclerView')
-//    implementation(name: 'com.rhino.rv-libRecyclerView-v1.0.9', ext: 'aar')
 
 }

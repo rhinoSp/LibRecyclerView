@@ -2,9 +2,10 @@ package com.rhino.rv.recvitem;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 
 import com.rhino.rv.R;
 import com.rhino.rv.base.BaseHolder;

@@ -22,7 +22,7 @@ public class ReflectUtils {
      * @return Field
      */
     public static Field getField(Class<?> sourceClass, String fieldName, boolean isFindDeclaredField,
-            boolean isSuperFind) {
+                                 boolean isSuperFind) {
         Field field = null;
         try {
             field = isFindDeclaredField ? sourceClass.getDeclaredField(fieldName) : sourceClass.getField(fieldName);

@@ -3,20 +3,21 @@ package com.rhino.rv.demo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 
-import com.rhino.rv.demo.data.SingleTextData;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.rhino.rv.SimpleGridSpan;
 import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.decoration.SimpleItemDecoration;
-import com.rhino.rv.pull.PullRecyclerView;
-import com.rhino.rv.pull.PullRefreshLayout;
 import com.rhino.rv.demo.data.SingleButtonData;
 import com.rhino.rv.demo.data.SingleEditData;
+import com.rhino.rv.demo.data.SingleTextData;
+import com.rhino.rv.pull.PullRecyclerView;
+import com.rhino.rv.pull.PullRefreshLayout;
 import com.rhino.rv.recvitem.RecvItemEmptyContent;
 import com.rhino.rv.recvitem.RecvItemEmptySpace;
 

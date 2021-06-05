@@ -1,7 +1,7 @@
 package com.rhino.rv.base;
 
-import android.databinding.ViewDataBinding;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.databinding.ViewDataBinding;
 
 /**
  * @author LuoLin

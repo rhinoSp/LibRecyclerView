@@ -2,18 +2,16 @@ package com.rhino.rv.pager;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.PropertyValuesHolder;
 import android.animation.ValueAnimator;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.PagerSnapHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * <p>The scroll helper of RecyclerView page.</p>
+ *
  * @author LuoLin
  * @since Create on 2017/8/25.
  */

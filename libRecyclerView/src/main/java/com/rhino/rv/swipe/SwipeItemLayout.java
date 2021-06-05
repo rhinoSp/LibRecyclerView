@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.FloatRange;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
@@ -17,6 +13,11 @@ import android.view.ViewParent;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+
+import androidx.annotation.FloatRange;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.ViewCompat;
+import androidx.customview.widget.ViewDragHelper;
 
 import com.rhino.rv.R;
 
@@ -60,7 +61,7 @@ import java.lang.reflect.Method;
  *             android:textSize="20sp"/&gt
  *
  *     &lt;RelativeLayout>
- * &lt;/android.support.percent.PercentFrameLayout/&gt
+ * &lt;/androidx.percent.PercentFrameLayout/&gt
  * </pre>
  * <p>The attributes that you can use are:</p>
  * <ul>
@@ -73,6 +74,7 @@ import java.lang.reflect.Method;
  * <p>
  * Notice: Only two child view.
  * </p>
+ *
  * @author LuoLin
  * @since Create on 2017/6/16.
  */

@@ -1,11 +1,12 @@
 package com.rhino.rv.demo.data;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 
 import com.rhino.rv.base.BaseHolder;
 import com.rhino.rv.demo.R;
@@ -50,7 +51,7 @@ public class SingleTextData extends BaseTreeData {
 
         @Override
         public void bindView(SingleTextData data, int position) {
-            if(0 != data.mDescColor){
+            if (0 != data.mDescColor) {
                 mTvDesc.setTextColor(data.mDescColor);
             }
             if (TextUtils.isEmpty(data.mDesc)) {
@@ -58,7 +59,7 @@ public class SingleTextData extends BaseTreeData {
             } else {
                 mTvDesc.setText(data.mDesc);
             }
-            if(data.mRandom){
+            if (data.mRandom) {
                 mTvDesc.setBackgroundColor(ColorUtils.TRANSPARENT);
                 LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mTvDesc.getLayoutParams();
                 params.height = ScreenUtils.dip2px(getContext(), 60) + new Random().nextInt(240);
@@ -66,7 +67,7 @@ public class SingleTextData extends BaseTreeData {
                 int r = 0x22;//new Random().nextInt(0xFF);
                 int g = new Random().nextInt(0x66);
                 int b = new Random().nextInt(0x66);
-                itemView.setBackgroundColor(Color.rgb(r,g,b));
+                itemView.setBackgroundColor(Color.rgb(r, g, b));
             }
 
         }

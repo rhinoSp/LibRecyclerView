@@ -1,15 +1,17 @@
 package com.rhino.rv.manager;
 
 import android.graphics.Rect;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
- * <p>A {@link android.support.v7.widget.RecyclerView.LayoutManager} implementation which provides
+ * <p>A {@link androidx.recyclerview.widget.RecyclerView.LayoutManager} implementation which provides
  * similar functionality to {@link android.widget.GridView}.</p>
+ *
  * @author LuoLin
  * @since Create on 2017/8/25.
  */
@@ -260,7 +262,7 @@ public class GridLayoutManager extends RecyclerView.LayoutManager {
     }
 
     /**
-     * Sets the orientation of the layout. {@link android.support.v7.widget.LinearLayoutManager}
+     * Sets the orientation of the layout. {@link androidx.recyclerview.widget.LinearLayoutManager}
      * will do its best to keep scroll position.
      *
      * @param orientation {@link #HORIZONTAL} or {@link #VERTICAL}

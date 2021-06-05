@@ -5,9 +5,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.v4.graphics.drawable.DrawableCompat;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 
 /**
@@ -54,7 +55,7 @@ public class DrawableUtils {
      * @return GradientDrawable
      */
     public static GradientDrawable buildShapeStrokeOvalDrawable(int strokeWidth,
-            @ColorInt int strokeColor, @ColorInt int solidColor) {
+                                                                @ColorInt int strokeColor, @ColorInt int solidColor) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(solidColor);
@@ -72,7 +73,7 @@ public class DrawableUtils {
      * @return GradientDrawable
      */
     public static GradientDrawable buildShapeStrokeRectDrawable(int strokeWidth,
-            @ColorInt int strokeColor, @ColorInt int solidColor, int corner) {
+                                                                @ColorInt int strokeColor, @ColorInt int solidColor, int corner) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
         gradientDrawable.setCornerRadius(corner);
@@ -98,9 +99,9 @@ public class DrawableUtils {
      * @return Drawable
      */
     public static Drawable buildShapeStrokeRectDrawable(int strokeWidth, @ColorInt int strokeColor,
-            @ColorInt int solidColor, int xTopLeftCorner, int yTopLeftCorner, int xTopRightCorner,
-            int yTopRightCorner, int xBottomRightCorner, int yBottomRightCorner,
-            int xBottomLeftCorner, int yBottomLeftCorner) {
+                                                        @ColorInt int solidColor, int xTopLeftCorner, int yTopLeftCorner, int xTopRightCorner,
+                                                        int yTopRightCorner, int xBottomRightCorner, int yBottomRightCorner,
+                                                        int xBottomLeftCorner, int yBottomLeftCorner) {
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.RECTANGLE);
         gradientDrawable.setCornerRadii(new float[]{xTopLeftCorner, yTopLeftCorner, yTopRightCorner,
@@ -119,7 +120,7 @@ public class DrawableUtils {
      * @return ColorStateList
      */
     public static ColorStateList buildColorStateList(@ColorInt int disableColor,
-            @ColorInt int selectedColor, @ColorInt int normalColor) {
+                                                     @ColorInt int selectedColor, @ColorInt int normalColor) {
         int[] colors = new int[]{disableColor, selectedColor, normalColor};
         int[][] states = new int[3][];
         states[0] = new int[]{-android.R.attr.state_enabled};
@@ -138,7 +139,7 @@ public class DrawableUtils {
      * @return ColorStateList
      */
     public static ColorStateList buildColorStateList(@ColorInt int disableColor,
-            @ColorInt int selectedColor, @ColorInt int pressedColor, @ColorInt int normalColor) {
+                                                     @ColorInt int selectedColor, @ColorInt int pressedColor, @ColorInt int normalColor) {
         int[] colors = new int[]{disableColor, selectedColor, pressedColor, normalColor};
         int[][] states = new int[4][];
         states[0] = new int[]{-android.R.attr.state_enabled};
@@ -158,7 +159,7 @@ public class DrawableUtils {
      * @return StateListDrawable
      */
     public static StateListDrawable buildStateListDrawable(Drawable disableDrawable, Drawable selectedDrawable,
-            Drawable pressedDrawable, Drawable normalDrawable) {
+                                                           Drawable pressedDrawable, Drawable normalDrawable) {
         StateListDrawable stateListDrawable = new StateListDrawable();
         if (null != disableDrawable) {
             stateListDrawable.addState(new int[]{-android.R.attr.state_enabled}, disableDrawable);
@@ -185,7 +186,7 @@ public class DrawableUtils {
      * @return StateListDrawable
      */
     public static StateListDrawable buildFocuseStateListDrawable(Drawable disableDrawable,
-            Drawable focusedDrawable, Drawable normalDrawable) {
+                                                                 Drawable focusedDrawable, Drawable normalDrawable) {
         StateListDrawable stateListDrawable = new StateListDrawable();
         if (null != disableDrawable) {
             stateListDrawable.addState(new int[]{-android.R.attr.state_enabled}, disableDrawable);
@@ -209,7 +210,7 @@ public class DrawableUtils {
      * @return StateListDrawable
      */
     public static StateListDrawable buildColorStateListDrawable(@ColorInt int disableColor,
-            @ColorInt int selectedColor, @ColorInt int pressedColor, @ColorInt int normalColor) {
+                                                                @ColorInt int selectedColor, @ColorInt int pressedColor, @ColorInt int normalColor) {
         return buildStateListDrawable(
                 disableColor != 0 ? new ColorDrawable(disableColor) : null,
                 selectedColor != 0 ? new ColorDrawable(selectedColor) : null,

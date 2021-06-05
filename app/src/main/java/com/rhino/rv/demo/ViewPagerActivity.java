@@ -2,19 +2,20 @@ package com.rhino.rv.demo;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rhino.rv.SimpleRecyclerAdapter;
 import com.rhino.rv.base.BaseHolderData;
 import com.rhino.rv.decoration.GridItemDecoration;
-import com.rhino.rv.manager.GridLayoutManager;
-import com.rhino.rv.pager.PagerScrollHelper;
 import com.rhino.rv.demo.data.SingleTextData;
 import com.rhino.rv.demo.view.CircleIndicator;
+import com.rhino.rv.manager.GridLayoutManager;
+import com.rhino.rv.pager.PagerScrollHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +89,6 @@ public class ViewPagerActivity extends AppCompatActivity {
         }
         adapter.updateData(list);
     }
-
 
 
 }

@@ -2,16 +2,17 @@ package com.rhino.rv.demo.data;
 
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+
+import com.rhino.rv.demo.R;
 import com.rhino.rv.swipe.BaseSwipeHolder;
 import com.rhino.rv.swipe.BaseSwipeHolderData;
-import com.rhino.rv.demo.R;
 
 
 /**
@@ -47,8 +48,8 @@ public class SimpleExpandHolderData extends BaseSwipeHolderData {
                 @Override
                 public void onClick(View v) {
                     SimpleExpandHolderData d = getBindData();
-                    if(null != d){
-                        if(!d.isOpened()){
+                    if (null != d) {
+                        if (!d.isOpened()) {
                             d.open(true);
                         } else {
                             d.close(true);
@@ -63,14 +64,14 @@ public class SimpleExpandHolderData extends BaseSwipeHolderData {
             mTvDesc.setText(data.mDesc);
 
             int depth = data.getDepth();
-            int margin = (depth-1) * 14;
+            int margin = (depth - 1) * 14;
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mTvDesc.getLayoutParams();
             params.leftMargin = margin;
 
-            float alpha = 1.0f - (depth-1) * 0.4f;
+            float alpha = 1.0f - (depth - 1) * 0.4f;
             mTvDesc.setTextColor(alphaColor(alpha, Color.BLACK));
 
-            if(data.isLeaf()){
+            if (data.isLeaf()) {
                 mIvArrow.setVisibility(View.GONE);
             } else {
                 mIvArrow.setVisibility(View.VISIBLE);
@@ -84,7 +85,7 @@ public class SimpleExpandHolderData extends BaseSwipeHolderData {
 
         @ColorInt
         public static int alphaColor(float alpha, @ColorInt int color) {
-            return (Math.round(alpha * (color >>> 24)) << 24 ) | (color & 0x00FFFFFF);
+            return (Math.round(alpha * (color >>> 24)) << 24) | (color & 0x00FFFFFF);
         }
     }
 
