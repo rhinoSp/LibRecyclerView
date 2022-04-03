@@ -201,7 +201,7 @@ public class BaseRecyclerAdapter extends RecyclerView.Adapter<BaseHolder> {
     public void addDataAndNotify(@NonNull List<? extends BaseHolderData> dataList) {
         int count = getItemCount();
         addData(dataList);
-        notifyItemRangeInserted(count - 1, dataList.size());
+        notifyItemRangeInserted(count, dataList.size());
     }
 
     /**
