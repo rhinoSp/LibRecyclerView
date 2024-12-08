@@ -145,6 +145,14 @@ public class PullRefreshLayout extends RelativeLayout {
      * Whether support pull up load.
      */
     private boolean isSupportPullUpLoad = true;
+    /**
+     * Down start x
+     */
+    private float downStartX = 0f;
+    /**
+     * Down start y
+     */
+    private float downStartY = 0f;
 
 
     public PullRefreshLayout(Context context) {
@@ -194,9 +202,20 @@ public class PullRefreshLayout extends RelativeLayout {
     public boolean dispatchTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                downStartX = ev.getX();
+                downStartY = ev.getY();
+                getParent().requestDisallowInterceptTouchEvent(true); // 阻止父控件拦截事件
                 onTouchDown(ev);
                 break;
             case MotionEvent.ACTION_MOVE:
+                float dx = Math.abs(ev.getX() - downStartX);
+                float dy = Math.abs(ev.getY() - downStartY);
+                // 如果检测到是水平滑动，让父控件处理事件
+                if (dx > dy) {
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                } else {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
                 onTouchMove(ev);
                 break;
             case MotionEvent.ACTION_UP:
